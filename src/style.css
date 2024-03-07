@@ -16,6 +16,20 @@
     font-size: calc(10px + 2vmin);
     color: #282c34;
 }
+.button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    background-image: url('./buttons/no_selection.png');
+    background-size: cover;
+    width: 150px; /* Adjust width as needed */
+    height: 50px; /* Adjust height as needed */
+}
+
 
 .home-bg {
     background-image: url('./images/cup_pen_stain.jpg');
