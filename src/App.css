@@ -3,23 +3,19 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: lightblue; /* Light blue background */
 }
 
-.image-container {
+.button-container {
   position: relative;
 }
 
-.main-image{
-  visibility: hidden;
-  opacity: 0;
+.main-image {
+  width: 100%;
+  height: auto;
 }
 
-.second-image{
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.hover-image {
+.about-hover-image {
   position: absolute;
   top: 0;
   left: 0;
@@ -27,6 +23,6 @@
   transition: opacity 0.3s ease;
 }
 
-.image-container:hover .hover-image {
+.hovering .about-hover-image {
   opacity: 1;
 }
