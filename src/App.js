@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
 import mainImage from './buttons/no_selection.png';
-import aboutHoverImage from './buttons/about.png';
+import projectsHoverImage from './buttons/projects.png';
 
 function App() {
     const [hovering, setHovering] = useState(false);
@@ -71,10 +71,8 @@ function App() {
                 onMouseMove={handleMouseMove}
             >
                 <img src={mainImage} alt="main-image" className="main-image" />
-                <svg width="100%" height="100%" viewBox="0 0 1000 500">
-                    <polygon points="582,264 549,319 810,441 965,368 953,236 946,156 938,71 847,85 718,138 632,202 661,228" fill={hovering ? 'red' : 'transparent'} />
-                </svg>
-                {hovering && <img src={aboutHoverImage} alt="about-hover-image" className="about-hover-image" />}
+
+                {hovering && <img src={projectsHoverImage} alt="projects-hover-image" className="projects-hover-image" />}
             </div>
         </div>
     );

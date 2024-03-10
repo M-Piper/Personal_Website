@@ -15,7 +15,9 @@
   height: auto;
 }
 
-.about-hover-image {
+.projects-hover-image {
+  width: 100%;
+  height: auto;
   position: absolute;
   top: 0;
   left: 0;
@@ -23,6 +25,6 @@
   transition: opacity 0.3s ease;
 }
 
-.hovering .about-hover-image {
+.hovering .projects-hover-image {
   opacity: 1;
 }
