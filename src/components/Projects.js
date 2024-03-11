@@ -24,7 +24,7 @@ const Projects = () => {
             </div>
             <div id="mainProjects">
                 <Link to="#" className="large-button">
-                    <img src={canFlyLogo} alt="CanFly Logo" className="button-image" />
+                    <img src={canFlyLogo} alt="CanFly Logo" className="project-button-image"/>
                 </Link>
             </div>
         </div>

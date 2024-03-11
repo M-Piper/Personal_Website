@@ -24,6 +24,9 @@ const Contact = () => {
             <div id="contactInfo">
                 <a href={"margaret.f.piper@gmail.com"}>margaret.f.piper@gmail.com</a>
             </div>
+            <div id="contactInfo">
+                <a href={"https://www.linkedin.com/in/margaretpiper/"}>LinkedIn</a>
+            </div>
         </div>
     );
 };

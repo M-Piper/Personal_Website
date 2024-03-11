@@ -43,18 +43,14 @@
 
 .large-button {
     position: absolute;
-    width: 200px; /* Adjust button width as needed */
-    height: 200px; /* Adjust button height as needed */
+
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: transparent;
+    background-size: contain; /* Ensure the background image covers the button area */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    background-position: center; /* Center the background image */
     border: none;
-}
-
-.button-image {
-    width: 100%; /* Make sure the image fills the button */
-    height: 100%; /* Make sure the image fills the button */
 }
 
 /* Add hover effect for large buttons */
