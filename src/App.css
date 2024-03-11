@@ -51,7 +51,6 @@
   margin-top: 20px; /* Adjust the value as needed */
 }
 
-
 .home-bg {
   background-image: url('./images/cup_pen_stain.jpg');
   background-size: cover;
@@ -80,68 +79,9 @@
   background-position: center;
   height: 100vh;
   display: flex;
-  flex-direction: row; /* Arrange items horizontally */
-}
-
-.menu-links {
-  display: flex;
-  flex-direction: column; /* Arrange links vertically */
-  justify-content: flex-start; /* Align links to the top */
-  align-items: flex-start; /* Align links to the left */
-  padding: 20px; /* Add padding to the menu */
-}
-
-.cv-bg {
-  background-image: url('./images/blank_page_pen.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
   justify-content: center; /* Center content horizontally */
   align-items: center; /* Center content vertically */
 }
-
-.menu-links {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Vertically center the links */
-  align-items: flex-start; /* Align links to the left */
-  padding: 20px;
-  position: fixed; /* Fix the position of the menu */
-  top: 0; /* Position the menu at the top */
-  left: 0; /* Position the menu at the left */
-  height: 100vh; /* Set full height to fill the viewport */
-  width: 200px; /* Set a fixed width for the menu */
-  background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background */
-}
-
-.cv-content {
-  max-width: 800px; /* Limit content width */
-  padding: 20px;
-}
-
-.cv-bg h1 {
-  color: midnightblue;
-  font-size: 4rem;
-  margin-bottom: 20px;
-  text-align: center; /* Center the "CV" header */
-}
-
-.cv-bg h2 {
-  font-size: 2.5rem;
-}
-
-.cv-bg p {
-  font-size: 1.5rem;
-}
-
-.cv-bg a {
-  text-decoration: none;
-  color: midnightblue;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-
 .projects-bg {
   background-image: url('./images/mess.jpg');
   background-size: cover;
@@ -163,14 +103,58 @@
   justify-content: center;
   align-items: center;
 }
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center the links */
+  align-items: flex-start; /* Align links to the left */
+  padding: 20px;
+  position: fixed; /* Fix the position of the menu */
+  top: 0; /* Position the menu at the top */
+  left: 0; /* Position the menu at the left */
+  height: 100vh; /* Set full height to fill the viewport */
+  width: 200px; /* Set a fixed width for the menu */
+  background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background */
+}
+
+.cv-content {
+  max-width: 800px; /* Limit content width */
+  padding: 20px;
+}
+.about-bg h1,
+.projects-bg h1,
+.contact-bg h1,
+.cv-bg h1 {
+  color: midnightblue;
+  font-size: 4rem;
+  margin-bottom: 20px;
+  text-align: center; /* Center the "CV" header */
+}
+
+.about-bg h2,
+.projects-bg h2,
+.contact-bg h2,
+.cv-bg h2 {
+  font-size: 2.5rem;
+}
+.about-bg p,
+.projects-bg p,
+.contact-bg p,
+.cv-bg p {
+  font-size: 1.5rem;
+}
+.about-bg a,
+.projects-bg a,
+.contact-bg a,
+.cv-bg a {
+  text-decoration: none;
+  color: midnightblue;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
 
 
 .about-content {
   max-width: 800px; /* Limit content width */
   padding: 20px;
-}
-
-.about-content p {
-  font-size: 1.5rem;
-  color: midnightblue;
 }
