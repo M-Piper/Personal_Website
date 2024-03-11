@@ -129,6 +129,11 @@ function App() {
     };
 
     return (
+
+        <div className="App">
+
+            <header className="App-header">
+                <h1>Margaret Piper</h1>
         <div className="container">
             <div
                 ref={containerRef}
@@ -141,6 +146,18 @@ function App() {
                 {hovering && hoverImage && <img src={hoverImage} alt="hover-image" className="hover-image" />}
             </div>
         </div>
+              {/*  <Router>
+                    <Routes>
+                        <Route exact path="/" component={Home} />
+                        <Route path="/about" component={About} />
+                        <Route path="/cv" component={CV} />
+                        <Route path="/projects" component={Projects} />
+                        <Route path="/contact" component={Contact} />
+                    </Routes>
+                </Router>*/}
+            </header>
+        </div>
+
     );
 }
 
