@@ -20,3 +20,36 @@
 .main-image:hover + .hover-image {
     opacity: 1;
 }
+.projects-bg {
+    background-image: url('./images/mess.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll; /* Enable vertical scrolling */
+}
+
+
+.large-button {
+    position: absolute;
+    width: 200px; /* Adjust button width as needed */
+    height: 200px; /* Adjust button height as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+}
+
+.button-image {
+    width: 100%; /* Make sure the image fills the button */
+    height: 100%; /* Make sure the image fills the button */
+}
+
+/* Add hover effect for large buttons */
+.large-button:hover {
+    filter: brightness(80%);
+}

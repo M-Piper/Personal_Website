@@ -5,6 +5,12 @@ import projectsHoverImage from './buttons/projects.png';
 import aboutHoverImage from './buttons/about.png';
 import cvHoverImage from './buttons/cv.png';
 import contactHoverImage from './buttons/contact.png';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+import About from './components/About';
+import CV from './components/CV';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
 
 function App() {
     const [hovering, setHovering] = useState(false);
@@ -40,6 +46,26 @@ function App() {
 
         // Set hovering state to true if hovering over any polygon
         setHovering(project || about || contact || cv);
+    };
+
+    const handleClick = (event) => {
+        const { offsetX, offsetY } = event.nativeEvent;
+
+        // Check if the mouse is within any of the polygons
+        const { project, about, contact, cv, home } = isPointInPolygons(offsetX, offsetY);
+
+        // Navigate to the respective route based on which polygon is clicked
+        if (project) {
+            window.location.href = '/projects';
+        } else if (about) {
+            window.location.href = '/about';
+        } else if (contact) {
+            window.location.href = '/contact';
+        } else if (cv) {
+            window.location.href = '/cv';
+        } else if (home) {
+            window.location.href = '/home';
+        }
     };
 
     const isPointInPolygons = (x, y) => {
@@ -95,17 +121,29 @@ function App() {
             [1113, 447]
         ];
 
+        const homePoly = [
+            [718,725],
+            [768,479],
+            [845,394],
+            [1075,366],
+            [1197,520],
+            [1193,753],
+            [1059,792],
+            [838,778]
+        ];
+
         // Check if the point is within any of the polygons
         const isInsideProject = isPointInPolygon(projectPoly, x, y);
         const isInsideAbout = isPointInPolygon(aboutPoly, x, y);
         const isInsideContact = isPointInPolygon(contactPoly, x, y);
         const isInsideCV = isPointInPolygon(cvPoly, x, y);
-
+        const isInsideHome = isPointInPolygon(homePoly, x, y);
         return {
             project: isInsideProject,
             about: isInsideAbout,
             contact: isInsideContact,
-            cv: isInsideCV
+            cv: isInsideCV,
+            home: isInsideHome
         };
     };
 
@@ -129,35 +167,31 @@ function App() {
     };
 
     return (
-
-        <div className="App">
-
-            <header className="App-header">
-                <h1>Margaret Piper</h1>
-        <div className="container">
-            <div
-                ref={containerRef}
-                className={`button-container ${hovering ? 'hovering' : ''}`}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                onMouseMove={handleMouseMove}
-            >
-                <img src={mainImage} alt="main-image" className="main-image" />
-                {hovering && hoverImage && <img src={hoverImage} alt="hover-image" className="hover-image" />}
+        <Router>
+            <div className="App">
+                <header className="App-header">
+                    <h1>Margaret Piper</h1>
+                    <div
+                        ref={containerRef}
+                        className={`button-container ${hovering ? 'hovering' : ''}`}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                        onMouseMove={handleMouseMove}
+                        onClick={handleClick}
+                    >
+                        <img src={mainImage} alt="main-image" className="main-image" />
+                        {hovering && hoverImage && <img src={hoverImage} alt="hover-image" className="hover-image" />}
+                    </div>
+                </header>
+                <Routes>
+                    <Route exact path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/cv" element={<CV />} />
+                    <Route path="/projects" element={<Projects />} />
+                    <Route path="/contact" element={<Contact />} />
+                </Routes>
             </div>
-        </div>
-              {/*  <Router>
-                    <Routes>
-                        <Route exact path="/" component={Home} />
-                        <Route path="/about" component={About} />
-                        <Route path="/cv" component={CV} />
-                        <Route path="/projects" component={Projects} />
-                        <Route path="/contact" component={Contact} />
-                    </Routes>
-                </Router>*/}
-            </header>
-        </div>
-
+        </Router>
     );
 }
 
