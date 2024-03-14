@@ -1,21 +1,29 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
+import { Link, BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import mainImage from './buttons/no_selection.png';
 import projectsHoverImage from './buttons/projects.png';
 import aboutHoverImage from './buttons/about.png';
 import cvHoverImage from './buttons/cv.png';
 import contactHoverImage from './buttons/contact.png';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './components/Home';
 import About from './components/About';
 import CV from './components/CV';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 
-function App() {
+const App = () => {
     const [hovering, setHovering] = useState(false);
     const [hoverImage, setHoverImage] = useState(null);
     const containerRef = useRef(null);
+    const featureId = 'home';
+
+    useEffect(() => {
+        // Scroll into view on component mount
+        const featureElement = document.getElementById(featureId);
+        if (featureElement) {
+            featureElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, []); // Empty dependency array
 
     const handleMouseEnter = () => {
         setHovering(true);
@@ -64,7 +72,7 @@ function App() {
         } else if (cv) {
             window.location.href = '/cv';
         } else if (home) {
-            window.location.href = '/home';
+            window.scrollTo(0, 0);
         }
     };
 
@@ -169,6 +177,13 @@ function App() {
     return (
         <Router>
             <div className="App">
+                <div className="menu-links">
+                    <Link to="/">Home</Link>
+                    <Link to="/about">About</Link>
+                    <Link to="/projects">Projects</Link>
+                    <Link to="/cv">CV</Link>
+                    <Link to="/contact">Contact</Link>
+                </div>
                 <header className="App-header">
                     <h1>Margaret Piper</h1>
                     <div
@@ -184,7 +199,6 @@ function App() {
                     </div>
                 </header>
                 <Routes>
-                    <Route exact path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/cv" element={<CV />} />
                     <Route path="/projects" element={<Projects />} />
