@@ -6,7 +6,7 @@ const About = () => {
         const featureId = 'aboutMargaret';
         const featureElement = document.getElementById(featureId);
         if (featureElement) {
-            featureElement.scrollIntoView({ behavior: 'smooth' });
+            featureElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }, []);
 

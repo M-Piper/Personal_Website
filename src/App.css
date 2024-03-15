@@ -66,11 +66,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .about-bg {
-  background-image: url('./images/gridbook_doodle.jpg');
+  background-image: url('./images/artbookpen2.jpg');
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -81,7 +81,7 @@
 }
 
 .cv-bg {
-  background-image: url('./images/artbook_plain.jpg');
+  background-image: url('./images/gridbook_pen_mess.jpg');
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -132,7 +132,9 @@
 
 .cv-content {
   position: relative; /* Add relative positioning */
+  margin-left: 200px;
   max-width: 800px; /* Limit content width */
+  width: 100%;
 }
 
 .navigation-arrows {
@@ -158,28 +160,34 @@
 .navigation-arrows button:last-child {
   margin-left: auto; /* Push the right arrow to the right */
 }
+
 .section-links {
   display: flex;
   justify-content: space-between;
   position: fixed; /* Change to fixed positioning */
-  top: 170px; /* Adjust the top position as needed */
-  left: 45%; /* Center horizontally */
+  top: 220px; /* Adjust the top position as needed */
+  left: 55%; /* Center horizontally */
   transform: translateX(-50%); /* Center horizontally */
   width: 40%; /* Adjust width as needed */
   z-index: 999; /* Ensure buttons are on top of other content */
 }
 
 .section-links button {
-  font-size: 2rem; /* Increase font size */
-  background-color: transparent;
+  font-size: 2rem;
+  background-color: rgba(252, 234, 234, 0.9);
+  /*text-shadow: 2px 2px 0 white, -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white;*/
+  border-radius: 20px;
   border: none;
   cursor: pointer;
   color: midnightblue;
   padding: 10px 20px; /* Add padding for better appearance */
+  transition: color 0.3s ease; /* Add transition for smoother effect */
 }
 
-
-
+.section-links button.active {
+  background-color: midnightblue; /* Change background color for active button */
+  color: white; /* Change text color for active button */
+}
 .about-bg h1,
 .projects-bg h1,
 .contact-bg h1,
@@ -198,14 +206,18 @@
 }
 .about-bg p,
 .projects-bg p,
-.contact-bg p,
+.contact-bg p{
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
 .cv-bg p {
   font-size: 1.5rem;
   line-height: 1.5;
 }
+
 .about-bg a,
 .projects-bg a,
-.contact-bg a,
 .cv-bg a {
   text-decoration: none;
   color: midnightblue;
@@ -213,14 +225,28 @@
   margin-bottom: 20px;
 }
 
+.contact-bg a {
+  text-decoration: underline;
+  color: midnightblue;
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
+
 .about-content {
   max-width: 800px; /* Limit content width */
   padding: 20px;
+  margin-left: 300px;
 }
 
 #contactInfo{
   margin-bottom: 100px;
 }
+
+#contactEmail{
+  margin-top:500px;
+  margin-bottom: 100px;
+}
+
 
 .hover-image {
   position: absolute;
@@ -241,11 +267,13 @@
   justify-content: center;
   align-items: center;
   background-size: contain; /* Ensure the background image covers the button area */
+  background-color: rgba(255, 215, 215, 0.7);
+  border-radius: 75px;
   background-repeat: no-repeat;
   background-position: center;
   border: none;
 }
 
 .large-button:hover {
-  filter: brightness(80%);
+  filter: brightness(150%);
 }

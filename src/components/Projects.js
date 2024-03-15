@@ -8,8 +8,7 @@ const Projects = () => {
         const featureId = 'mainProjects';
         const featureElement = document.getElementById(featureId);
         if (featureElement) {
-            const scrollPosition = featureElement.offsetTop + 200;
-            featureElement.scrollIntoView({ behavior: 'smooth' });
+            featureElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }, []);
 

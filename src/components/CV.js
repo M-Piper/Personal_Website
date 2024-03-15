@@ -26,7 +26,6 @@ const CV = () => {
         <div className="cv-bg">
             <div className="cv-content">
                 <div className="viewscreen">
-                    <h2>{sections[activeSection]}</h2>
                     <div ref={(el) => (contentRefs.current[activeSection] = el)}>
                         {/* Content for each section */}
                         {activeSection === 0 && (
@@ -77,7 +76,13 @@ const CV = () => {
             </div>
             <div className="section-links">
                 {sections.map((section, index) => (
-                    <button key={index} onClick={() => handleSectionClick(index)}>{section}</button>
+                    <button
+                        key={index}
+                        onClick={() => handleSectionClick(index)}
+                        className={activeSection === index ? 'active' : ''}
+                    >
+                        {section}
+                    </button>
                 ))}
             </div>
         </div>

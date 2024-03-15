@@ -13,11 +13,11 @@ const Contact = () => {
 
     return (
         <div className="contact-bg">
-            <div id="contactInfo">
+            <div id="contactEmail">
                 <a href={"margaret.f.piper@gmail.com"}>margaret.f.piper@gmail.com</a>
             </div>
             <div id="contactInfo">
-                <a href={"https://www.linkedin.com/in/margaretpiper/"}>LinkedIn</a>
+                <a href={"https://www.linkedin.com/in/margaretpiper/"}>@linkedIn</a>
             </div>
         </div>
     );
