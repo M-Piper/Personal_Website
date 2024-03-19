@@ -7,7 +7,7 @@ const CV = () => {
     const contentRefs = useRef([]);
 
     useEffect(() => {
-        contentRefs.current[activeSection]?.scrollIntoView({ behavior: 'instant', block: 'start' });
+        contentRefs.current[activeSection]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, [activeSection]);
 
     const handleNext = () => {
@@ -50,8 +50,6 @@ const CV = () => {
                         )}
                         {activeSection === 2 && (
                             <p>
-                                <br/>
-                                <br/>
                                 Developing with AWS Workshop, 2023 <br />
                                 Management Training Workshop, 2020 <br />
                                 Transforming and Querying XML with XSLT and XQuery Course, 2020 <br />
