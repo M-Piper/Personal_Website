@@ -34,7 +34,9 @@ const App = () => {
     };
 
     const handleMouseMove = (event) => {
-        const { offsetX, offsetY } = event.nativeEvent;
+        const containerRect = containerRef.current.getBoundingClientRect();
+        const offsetX = event.clientX - containerRect.left;
+        const offsetY = event.clientY - containerRect.top;
 
         // Check if the mouse is within any of the polygons
         const { project, about, contact, cv } = isPointInPolygons(offsetX, offsetY);
@@ -57,7 +59,10 @@ const App = () => {
     };
 
     const handleClick = (event) => {
-        const { offsetX, offsetY } = event.nativeEvent;
+        const containerRect = containerRef.current.getBoundingClientRect();
+        const offsetX = event.clientX - containerRect.left;
+        const offsetY = event.clientY - containerRect.top;
+
 
         // Check if the mouse is within any of the polygons
         const { project, about, contact, cv, home } = isPointInPolygons(offsetX, offsetY);

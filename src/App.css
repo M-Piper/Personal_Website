@@ -116,14 +116,16 @@
   flex-direction: column;
   justify-content: center; /* Vertically center the links */
   align-items: flex-start; /* Align links to the left */
-  padding: 40px 20px; /* Increase padding for better spacing */
+  padding: 5% 2%; /* Adjust padding as a percentage of viewport */
   position: fixed; /* Fix the position of the menu */
   top: 0; /* Position the menu at the top */
   left: 0; /* Position the menu at the left */
   height: 100vh; /* Set full height to fill the viewport */
-  width: 250px; /* Set a wider width for the menu */
+  width: 10%; /* Set a percentage width for the menu */
+  min-width: 150px; /* Set a minimum width */
   background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background */
 }
+
 
 .menu-links a {
   font-size: 2rem; /* Increase font size */
