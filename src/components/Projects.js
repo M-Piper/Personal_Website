@@ -1,15 +1,24 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import '../style.css';
+import '../App.css';
+import canFlyLogo from '../buttons/canfly.png';
 
 const Projects = () => {
+    useEffect(() => {
+        const featureId = 'mainProjects';
+        const featureElement = document.getElementById(featureId);
+        if (featureElement) {
+            featureElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, []);
+
     return (
         <div className="projects-bg">
-            <h1>Projects</h1>
-            <Link to="/about">About</Link>
-            <Link to="/cv">CV</Link>
-            <Link to="/home">Home</Link>
-            <Link to="/contact">Contact</Link>
+            <div id="mainProjects">
+                <Link to="#" className="large-button">
+                    <img src={canFlyLogo} alt="CanFly Logo" className="project-button-image"/>
+                </Link>
+            </div>
         </div>
     );
 };

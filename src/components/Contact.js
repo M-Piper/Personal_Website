@@ -1,15 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import '../style.css';
+import '../App.css';
 
 const Contact = () => {
+    useEffect(() => {
+        const featureId = 'contactInfo';
+        const featureElement = document.getElementById(featureId);
+        if (featureElement) {
+            const scrollPosition = featureElement.offsetTop + 500;
+            featureElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, []);
+
     return (
         <div className="contact-bg">
-            <h1>Contact</h1>
-            <Link to="/about">About</Link>
-            <Link to="/cv">CV</Link>
-            <Link to="/Home">Home</Link>
-            <Link to="/projects">Projects</Link>
+            <div id="contactEmail">
+                <a href={"margaret.f.piper@gmail.com"}>margaret.f.piper@gmail.com</a>
+            </div>
+            <div id="contactInfo">
+                <a href={"https://www.linkedin.com/in/margaretpiper/"}>@linkedIn</a>
+            </div>
         </div>
     );
 };
