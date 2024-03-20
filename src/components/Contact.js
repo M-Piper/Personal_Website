@@ -8,7 +8,6 @@ import cvHoverImage from '../buttons/cv.png';
 import contactHoverImage from '../buttons/contact.png';
 import PiperButton from './PiperButton';
 import { projectPoly, aboutPoly, contactPoly, cvPoly, homePoly } from './PolygonCoordinates';
-import SidebarButton from './SidebarButton';
 
 
 const Contact = () => {
@@ -112,6 +111,9 @@ const Contact = () => {
             </div>
             <div id="contactInfo">
                 <a href={"https://www.linkedin.com/in/margaretpiper/"}>@linkedIn</a>
+            </div>
+            <div id="contactInfo">
+                <a href={"https://github.com/M-Piper"}>@github</a>
             </div>
         </div>
     );

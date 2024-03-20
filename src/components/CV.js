@@ -102,14 +102,14 @@ const CV = () => {
                     scaleFactor={0.5}
                 />
             </div>
-            {/* Rest of CV content */}
             <div className="cv-content">
-                {/* Content for all sections */}
                 <p>
+                    <h3>Education:</h3>
                     Computer Programming Diploma, Algonquin College (2023) <br />
                     Masters of Information Studies, University of Ottawa (2016) <br />
                     Master’s of Music, Composition, University of Victoria (2010) <br />
                     Bachelor’s Degree in Music, Wilfrid Laurier University (2008) <br />
+                    <h3>Work Experience:</h3>
                     Jr Software Analyst, Department of National Defence (March - Dec. 2023) <br />
                     Systems Librarian, SDG Library (Aug 2020 – Oct 2021) <br />
                     Library and Archives Canada (2016-2020) <br />
@@ -118,6 +118,7 @@ const CV = () => {
                     Archival Assistant, Library and Archives Canada<br />
                     Information Management Officer, Canada Revenue Agency (2015) <br />
                     Library Assistant, Canadiana.org (2014) <br />
+                    <h3>Professional Development:</h3>
                     Developing with AWS Workshop, 2023 <br />
                     Management Training Workshop, 2020 <br />
                     Transforming and Querying XML with XSLT and XQuery Course, 2020 <br />
