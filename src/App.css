@@ -101,7 +101,10 @@
   justify-content: center;
   align-items: center;
 }
-.menu-links {
+
+
+.sidebar-button {
+    z-index: 1000; /* Ensure it appears above other elements */
   font-family: "Madimi One", sans-serif;
   display: flex;
   flex-direction: column;
@@ -118,11 +121,15 @@
 }
 
 
-.menu-links a {
-  font-size: 2rem; /* Increase font size */
-  margin-bottom: 30px; /* Increase margin between links */
+.sidebar-button img {
+  width: 400px; /* Adjust the width of the button image */
+  height: auto; /* Maintain aspect ratio */
+  transition: transform 0.3s ease; /* Add transition for smoother effect */
 }
 
+.sidebar-button img:hover {
+  transform: scale(1.1); /* Scale up the button image on hover */
+}
 .cv-content {
   position: relative; /* Add relative positioning */
   margin-left: 200px;
@@ -162,8 +169,8 @@
     display: flex;
     justify-content: center;
     position: absolute; /* Change position to absolute */
-    bottom: -15%; /* Adjust bottom position as needed */
-    margin-left: 12%;
+  top: calc(50% - 500px);
+  margin-left: 5%;
     width: 100%;
     z-index: 999;
 }

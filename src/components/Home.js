@@ -6,6 +6,7 @@ import aboutHoverImage from '../buttons/about.png';
 import cvHoverImage from '../buttons/cv.png';
 import contactHoverImage from '../buttons/contact.png';
 import PiperButton from './PiperButton';
+import { projectPoly, aboutPoly, contactPoly, cvPoly, homePoly } from './PolygonCoordinates';
 import '../App.css';
 const Home = () => {
     const [hoverImage, setHoverImage] = useState(null);
@@ -50,61 +51,12 @@ const Home = () => {
     };
 
     const isPointInPolygons = (x, y) => {
-        // Define the polygon coordinates for each button
-        const projectPoly = [
-            [27, 246],
-            [80, 163],
-            [166, 86],
-            [267, 39],
-            [415, 6],
-            [424, 107],
-            [442, 318],
-            [332, 387],
-            [308, 381]
-        ];
-
-        const aboutPoly = [
-            [136, 621],
-            [59, 539],
-            [8, 429],
-            [3, 334],
-            [26, 250],
-            [118, 294],
-            [305, 380],
-            [151, 634]
-        ];
-
-        const contactPoly = [
-            [615, 372],
-            [891, 231],
-            [920, 310],
-            [926, 361],
-            [904, 476],
-            [867, 540],
-            [790, 621],
-            [668, 692]
-        ];
-
-        const cvPoly = [
-            [415, 4],
-            [551, 10],
-            [670, 43],
-            [795, 111],
-            [889, 227],
-            [744, 307],
-            [614, 370],
-            [442, 314]
-        ];
-
-        const homePoly = [
-            [153, 635],
-            [313, 393],
-            [607, 372],
-            [657, 693],
-            [479, 726],
-            [290, 700]
-        ];
-
+        // Check if the point is within any of the polygons
+        console.log("Project Poly:", projectPoly);
+        console.log("About Poly:", aboutPoly);
+        console.log("Contact Poly:", contactPoly);
+        console.log("CV Poly:", cvPoly);
+        console.log("Home Poly:", homePoly);
         // Check if the point is within any of the polygons
         const isInsideProject = isPointInPolygon(projectPoly, x, y);
         const isInsideAbout = isPointInPolygon(aboutPoly, x, y);
