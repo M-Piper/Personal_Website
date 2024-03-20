@@ -1,59 +1,108 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../App.css';
+import { useNavigate } from 'react-router-dom';
 import mainImage from '../buttons/no_selection.png';
 import projectsHoverImage from '../buttons/projects.png';
 import aboutHoverImage from '../buttons/about.png';
 import cvHoverImage from '../buttons/cv.png';
 import contactHoverImage from '../buttons/contact.png';
+import PiperButton from './PiperButton';
 import { projectPoly, aboutPoly, contactPoly, cvPoly, homePoly } from './PolygonCoordinates';
-import SidebarButton from './SidebarButton';
 
 const CV = () => {
-    const [hoveredImage, setHoveredImage] = useState(cvHoverImage); // Default image
+    const [hoverImage, setHoverImage] = useState(null);
+    const [defaultImage, setDefaultImage] = useState(cvHoverImage)
+    const navigate = useNavigate();
 
-    // Function to determine which polygon the mouse is hovering over
-    const getHoveredImage = (x, y) => {
-        if (isPointInPolygon(x, y, projectPoly)) {
-            return projectsHoverImage;
-        } else if (isPointInPolygon(x, y, aboutPoly)) {
-            return aboutHoverImage;
-        } else if (isPointInPolygon(x, y, contactPoly)) {
-            return contactHoverImage;
-        } else if (isPointInPolygon(x, y, cvPoly)) {
-            return cvHoverImage;
+    const handleButtonClick = () => {
+        console.log('Clicked! Hover Image:', hoverImage); // Add this line
+        // Determine the appropriate URL based on the current hover state
+        let destination;
+        if (hoverImage === projectsHoverImage) {
+            navigate('/projects');
+        } else if (hoverImage === aboutHoverImage) {
+            navigate('/about');
+        } else if (hoverImage === cvHoverImage) {
+            navigate('/cv');
+        } else if (hoverImage === contactHoverImage) {
+            navigate('/contact');
         } else {
-            return mainImage; // Default image if not hovering over any polygon
+            navigate('/');
         }
     };
 
-    // Function to check if a point is inside a polygon
-    const isPointInPolygon = (x, y, polygon) => {
-        let inside = false;
+    const handleMouseMove = (event) => {
+        // Get coordinates of the mouse pointer
+        const offsetX = event.nativeEvent.offsetX;
+        const offsetY = event.nativeEvent.offsetY;
+
+        // Check if the mouse is within any of the polygons
+        const { project, about, contact, cv } = isPointInPolygons(offsetX, offsetY);
+
+        // Set hover image based on which polygon is being hovered over
+        if (project) {
+            setHoverImage(projectsHoverImage);
+        } else if (about) {
+            setHoverImage(aboutHoverImage);
+        } else if (contact) {
+            setHoverImage(contactHoverImage);
+        } else if (cv) {
+            setHoverImage(cvHoverImage);
+        } else {
+            setHoverImage(null); // Clear hover image if not hovering over any polygon
+        }
+        console.log('Hover Image:', hoverImage); // console log to debug links issue
+    };
+
+    const isPointInPolygons = (x, y) => {
+        // Check if the point is within any of the polygons
+        const isInsideProject = isPointInPolygon(projectPoly, x, y);
+        const isInsideAbout = isPointInPolygon(aboutPoly, x, y);
+        const isInsideContact = isPointInPolygon(contactPoly, x, y);
+        const isInsideCV = isPointInPolygon(cvPoly, x, y);
+        const isInsideHome = isPointInPolygon(homePoly, x, y);
+        return {
+            project: isInsideProject,
+            about: isInsideAbout,
+            contact: isInsideContact,
+            cv: isInsideCV,
+            home: isInsideHome
+        };
+    };
+
+    const isPointInPolygon = (polygon, x, y) => {
+        let isInside = false;
+
+        // Ray casting algorithm to check if the point is inside the polygon
         for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
             const xi = polygon[i][0];
             const yi = polygon[i][1];
             const xj = polygon[j][0];
             const yj = polygon[j][1];
-            const intersect = yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
-            if (intersect) inside = !inside;
-        }
-        return inside;
-    };
 
-    // Event handler for mouse movement to update hover image
-    const handleMouseMove = (event) => {
-        const rect = event.target.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-        const image = getHoveredImage(x, y);
-        setHoveredImage(image);
+            const intersect =
+                yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
+
+            if (intersect) isInside = !isInside;
+        }
+
+        return isInside;
     };
 
     return (
-        <div className="cv-bg" onMouseMove={handleMouseMove}>
+        <div className="cv-bg">
             {/* Sidebar with buttons */}
-            <SidebarButton image={hoveredImage} polygonLabel="CV" />
-            {/* Rest of your CV content */}
+            <div className="button-container" onMouseMove={handleMouseMove}>
+                {/* Pass the 'to' prop to PiperButton */}
+                <PiperButton
+                    image={defaultImage}
+                    hoverImage={hoverImage}
+                    onClick={handleButtonClick}
+                    smallButton={true}
+                    scaleFactor={0.5}
+                />
+            </div>
+            {/* Rest of CV content */}
             <div className="cv-content">
                 {/* Content for all sections */}
                 <p>

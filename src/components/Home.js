@@ -10,6 +10,7 @@ import { projectPoly, aboutPoly, contactPoly, cvPoly, homePoly } from './Polygon
 import '../App.css';
 const Home = () => {
     const [hoverImage, setHoverImage] = useState(null);
+    const [defaultImage, setDefaultImage] = useState(mainImage)
     const navigate = useNavigate();
     const handleButtonClick = () => {
         console.log('Clicked! Hover Image:', hoverImage); // Add this line
@@ -99,7 +100,7 @@ const Home = () => {
                     image={mainImage}
                     hoverImage={hoverImage}
                     onClick={handleButtonClick}
-                    to={hoverImage === projectsHoverImage ? '/projects' : '/'}
+                    scaleFactor={0.8}
                 />
             </div>
         </div>
