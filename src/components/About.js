@@ -12,6 +12,7 @@ import { projectPoly, aboutPoly, contactPoly, cvPoly, homePoly } from './Polygon
 const About = () => {
     const [hoverImage, setHoverImage] = useState(null);
     const [defaultImage, setDefaultImage] = useState(aboutHoverImage)
+    const [touchStart, setTouchStart] = useState(0);
     const navigate = useNavigate();
 
     const handleButtonClick = () => {
@@ -54,6 +55,32 @@ const About = () => {
         console.log('Hover Image:', hoverImage); // console log to debug links issue
     };
 
+
+    const handleTouchStart = () => {
+        setTouchStart(Date.now());
+        setHoverImage(aboutHoverImage); // Show hover image when touch starts
+    };
+
+    const handleTouchEnd = () => {
+        const touchDuration = Date.now() - touchStart;
+        if (touchDuration < 500) {
+            // If touch duration is less than 500ms, treat it as a click
+            handleButtonClick();
+        } else {
+            // Otherwise, navigate to the appropriate page
+            if (hoverImage === aboutHoverImage) {
+                navigate('/about');
+            } else if (hoverImage === cvHoverImage) {
+                navigate('/cv');
+            } else if (hoverImage === contactHoverImage) {
+                navigate('/contact');
+            } else {
+                navigate('/');
+            }
+        }
+        setHoverImage(null); // Clear hover image when touch ends
+    };
+
     const isPointInPolygons = (x, y) => {
         // Check if the point is within any of the polygons
         const isInsideProject = isPointInPolygon(projectPoly, x, y);
@@ -91,8 +118,11 @@ const About = () => {
 
     return (
         <div className="about-bg">
-            {/* Sidebar with buttons */}
-            <div className="button-container" onMouseMove={handleMouseMove}>
+            <div className="button-container"
+                 onMouseMove={handleMouseMove}
+                 onTouchStart={handleTouchStart}
+                 onTouchEnd={handleTouchEnd}
+            >
                 {/* Pass the 'to' prop to PiperButton */}
                 <PiperButton
                     image={defaultImage}
@@ -102,12 +132,18 @@ const About = () => {
                     scaleFactor={0.5}
                 />
             </div>
-            <div className="about-content">
-                <div id="aboutMargaret">
-                    <p>While new to working as a developer, Margaret is no stranger to the Canadian workforce. From her diverse background as a professional musician, librarian, archivist, and now IT professional, her creativity shines through all of her work experiences. She is known for her strong work ethic, creativity, and ability to learn on the fly.</p>
-                    <p>Margaret enjoyed a lengthy career in the field of librarianship and found herself in increasingly technical roles, culminating in a Systems Librarian position. At that point, she decided to make the leap and return to school to learn coding and become a full-stack developer. She was fortunate to be able to work full-time for the Federal Government of Canada in an IT capacity during her studies. And has chosen to pursue work in the private sector.</p>
-                    <p>In her spare time, Margaret enjoys sewing, cooking, and gardening. She lives in the countryside between Ottawa and Montreal with her husband and three cats.</p>
-                </div>
+            <div className="about-container">
+                    <p>While new to working as a developer, Margaret is no stranger to the Canadian workforce. <br/>
+                    From her diverse background as a professional musician, librarian, archivist, and now IT professional,<br/>
+                    her creativity shines through all of her work experiences. She is known for her strong work ethic,
+                        creativity, and ability to learn on the fly.<br/>
+                        <br/>
+                        Margaret enjoyed a lengthy career in the field of librarianship and found herself in increasingly technical roles, <br/>
+                        culminating in a Systems Librarian position. At that point, she decided to make the leap and return to school to learn coding <br/>
+                        and become a full-stack developer. She was fortunate to be able to work full-time for the Federal Government of Canada <br/>
+                        in an IT capacity during her studies. And has chosen to pursue work in the private sector.<br/>
+                    In her spare time, Margaret enjoys sewing, cooking, and gardening. She lives in the countryside between<br/>
+                        Ottawa and Montreal with her husband and three cats.</p>
             </div>
         </div>
     );

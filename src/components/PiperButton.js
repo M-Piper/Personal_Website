@@ -4,6 +4,9 @@ import '../App.css';
 const PiperButton = ({ image, hoverImage, onClick, to, smallButton, scaleFactor }) => {
     const [hovering, setHovering] = useState(false);
 
+    //Touch response for touch screen devices
+    const [touching, setTouching] = useState(false);
+
     const handleMouseEnter = () => {
         setHovering(true);
     };
@@ -12,9 +15,27 @@ const PiperButton = ({ image, hoverImage, onClick, to, smallButton, scaleFactor 
         setHovering(false);
     };
 
-    const handleClick = () => {
+
+    const handleTouchStart = () => {
+        setTouching(true);
+        // Show hover image when touched
+        setHovering(true);
+    };
+
+    const handleTouchEnd = () => {
+        setTouching(false);
+        // Hide hover image when touch ends
+        setHovering(false);
+        // Navigate to the link if onClick exists
         if (onClick) {
-            onClick(); // Call the onClick handler if it exists
+            onClick();
+        }
+    };
+
+    const handleClick = () => {
+        // Navigate to the link if onClick exists and there's no touch action
+        if (onClick && !touching) {
+            onClick();
         }
     };
 
@@ -23,6 +44,8 @@ const PiperButton = ({ image, hoverImage, onClick, to, smallButton, scaleFactor 
             className={`button-container ${smallButton ? 'small-button' : ''} ${hovering ? 'hovering' : ''}`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
             onClick={handleClick}
         >
             <Link to={to}>

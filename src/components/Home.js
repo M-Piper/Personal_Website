@@ -11,6 +11,7 @@ import '../App.css';
 const Home = () => {
     const [hoverImage, setHoverImage] = useState(null);
     const [defaultImage, setDefaultImage] = useState(mainImage)
+    const [touchStart, setTouchStart] = useState(0);
     const navigate = useNavigate();
     const handleButtonClick = () => {
         console.log('Clicked! Hover Image:', hoverImage); // Add this line
@@ -51,13 +52,22 @@ const Home = () => {
         console.log('Hover Image:', hoverImage); // cosole log to debug links issue
     };
 
+    const handleTouchStart = () => {
+        setTouchStart(Date.now());
+        setHoverImage(mainImage); // Show hover image when touch starts
+    };
+
+    const handleTouchEnd = () => {
+        const touchDuration = Date.now() - touchStart;
+        if (touchDuration < 500) {
+            // If touch duration is less than 500ms, treat it as a click
+            handleButtonClick();
+        }
+        // Otherwise, no action required for touch end
+        setHoverImage(null); // Clear hover image when touch ends
+    };
+
     const isPointInPolygons = (x, y) => {
-        // Check if the point is within any of the polygons
-        console.log("Project Poly:", projectPoly);
-        console.log("About Poly:", aboutPoly);
-        console.log("Contact Poly:", contactPoly);
-        console.log("CV Poly:", cvPoly);
-        console.log("Home Poly:", homePoly);
         // Check if the point is within any of the polygons
         const isInsideProject = isPointInPolygon(projectPoly, x, y);
         const isInsideAbout = isPointInPolygon(aboutPoly, x, y);
@@ -94,7 +104,12 @@ const Home = () => {
     return (
         <div className="home-bg">
             <h1 className="header">Margaret Piper</h1>
-            <div className="button-container" onMouseMove={handleMouseMove}>
+            <div
+                className="button-container"
+                onMouseMove={handleMouseMove}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+            >
                 {/* Pass the 'to' prop to PiperButton */}
                 <PiperButton
                     image={mainImage}

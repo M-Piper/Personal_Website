@@ -13,6 +13,7 @@ import { projectPoly, aboutPoly, contactPoly, cvPoly, homePoly } from './Polygon
 const Contact = () => {
     const [hoverImage, setHoverImage] = useState(null);
     const [defaultImage, setDefaultImage] = useState(contactHoverImage)
+    const [touchStart, setTouchStart] = useState(0);
     const navigate = useNavigate();
     const handleButtonClick = () => {
         console.log('Clicked! Hover Image:', hoverImage); // Add this line
@@ -51,6 +52,32 @@ const Contact = () => {
             setHoverImage(null); // Clear hover image if not hovering over any polygon
         }
         console.log('Hover Image:', hoverImage); // cosole log to debug links issue
+    };
+
+
+    const handleTouchStart = () => {
+        setTouchStart(Date.now());
+        setHoverImage(contactHoverImage); // Show hover image when touch starts
+    };
+
+    const handleTouchEnd = () => {
+        const touchDuration = Date.now() - touchStart;
+        if (touchDuration < 500) {
+            // If touch duration is less than 500ms, treat it as a click
+            handleButtonClick();
+        } else {
+            // Otherwise, navigate to the appropriate page
+            if (hoverImage === aboutHoverImage) {
+                navigate('/about');
+            } else if (hoverImage === cvHoverImage) {
+                navigate('/cv');
+            } else if (hoverImage === contactHoverImage) {
+                navigate('/contact');
+            } else {
+                navigate('/');
+            }
+        }
+        setHoverImage(null); // Clear hover image when touch ends
     };
 
     const isPointInPolygons = (x, y) => {
@@ -95,8 +122,12 @@ const Contact = () => {
 
     return (
         <div className="contact-bg">
-            {/* Sidebar with buttons */}
-            <div className="button-container" onMouseMove={handleMouseMove}>
+            <div
+                className="button-container"
+                onMouseMove={handleMouseMove}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+            >
                 {/* Pass the 'to' prop to PiperButton */}
                 <PiperButton
                     image={defaultImage}
@@ -106,14 +137,16 @@ const Contact = () => {
                     scaleFactor={0.5}
                 />
             </div>
-            <div id="contactEmail">
+            <div className="contact-container">
+                <div id="contactInfo">
                 <a href={"mailto:margaret.f.piper@gmail.com"}>margaret.f.piper@gmail.com</a>
-            </div>
-            <div id="contactInfo">
+                </div>
+                <div id="contactInfo">
                 <a href={"https://www.linkedin.com/in/margaretpiper/"}>@linkedIn</a>
-            </div>
-            <div id="contactInfo">
+                </div>
+                <div id="contactInfo">
                 <a href={"https://github.com/M-Piper"}>@github</a>
+                </div>
             </div>
         </div>
     );
