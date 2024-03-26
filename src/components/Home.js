@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Sidebar from './Sidebar.js'
+import Sidebar from './Sidebar.js';
 import mainImage from '../buttons/main.png';
-import mainHover from '../buttons/mainHover.png'
+import mainHover from '../buttons/mainHover.png';
 import main1Image from '../buttons/main1.png';
 import main2Image from '../buttons/main2.png';
 import main3Image from '../buttons/main3.png';
@@ -15,7 +15,8 @@ import Button from './Button';
 
 const Home = () => {
     const [hoverImage, setHoverImage] = useState(mainImage);
-
+    const [showDottedLine, setShowDottedLine] = useState(false);
+    const [lineCoordinates, setLineCoordinates] = useState({ x1: 0, y1: 0, x2: 0, y2: 0 });
     const navigate = useNavigate();
 
     const handleButtonClick = (destination) => {
@@ -29,6 +30,7 @@ const Home = () => {
     const handleMainImageLeave = () => {
         setHoverImage(mainImage);
     };
+
     const handleMouseEnter = (image) => {
         if (image === projectsImage) {
             setHoverImage(main1Image);
@@ -43,6 +45,29 @@ const Home = () => {
 
     const handleMouseLeave = () => {
         setHoverImage(mainImage);
+    };
+
+    const handleTouchStart = (e) => {
+        const touch = e.touches[0];
+        const mainImage = document.querySelector('.main-image');
+        const rect = mainImage.getBoundingClientRect();
+        const x = touch.clientX - rect.left; // X coordinate relative to the image
+        const y = touch.clientY - rect.top; // Y coordinate relative to the image
+        setLineCoordinates({ x1: rect.width / 2, y1: rect.height / 2, x2: x, y2: y });
+        setShowDottedLine(true);
+    };
+
+    const handleTouchMove = (e) => {
+        const touch = e.touches[0];
+        const mainImage = document.querySelector('.main-image');
+        const rect = mainImage.getBoundingClientRect();
+        const x = touch.clientX - rect.left; // X coordinate relative to the image
+        const y = touch.clientY - rect.top; // Y coordinate relative to the image
+        setLineCoordinates({ x1: rect.width / 2, y1: rect.height / 2, x2: x, y2: y });
+    };
+
+    const handleTouchEnd = () => {
+        setShowDottedLine(false);
     };
 
     return (
@@ -76,7 +101,24 @@ const Home = () => {
                 />
             </div>
 
-            <div className="main-image-button">
+            <div
+                className="main-image-button"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+            >
+                {showDottedLine && (
+                    <svg className="dotted-line-svg" width="100%" height="100%">
+                        <line
+                            x1={lineCoordinates.x1}
+                            y1={lineCoordinates.y1}
+                            x2={lineCoordinates.x2}
+                            y2={lineCoordinates.y2}
+                            stroke="black"
+                            strokeDasharray="5"
+                        />
+                    </svg>
+                )}
                 <img
                     src={hoverImage}
                     alt="Main"
@@ -86,7 +128,6 @@ const Home = () => {
                 />
             </div>
         </div>
-
     );
 };
 

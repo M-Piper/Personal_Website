@@ -30,33 +30,41 @@
 }
 
 .home-bg {
-  background-image: url('./images/home.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
+    background-image: url('./images/home.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
   width: 100vw;
-  display: grid;
-  grid-template-columns: auto 1fr; /* Two columns, first one auto-sized for buttons, second takes remaining space for main image */
-  grid-gap: 20px; /* Adjust the gap between the columns */
-  align-items: center; /* Center items vertically */
-}
+    display: flex; /* Change to flexbox layout */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+  }
 
 .main-image {
-  width: 70%; /* Adjust the width as needed */
+  width: 90%; /* Adjust the width for mobile devices */
   max-width: 100%; /* Ensure the image doesn't exceed its original size */
   height: auto; /* Maintain the aspect ratio */
 }
 
-
 /*SIDEBAR RELATED CSS*/
-/* Sidebar.css */
 .sidebar {
-  width: 200px; /* Adjust the width as needed */
+  width: 20vw; /* Adjust the width relative to the viewport width */
+  min-width: 100px; /* Set a minimum width for smaller screens */
   height: 100vh; /* Set height to full viewport height */
   background-color: #f0f0f0; /* Example background color */
   position: fixed; /* Fixed position to keep it visible while scrolling */
   top: 0; /* Align to the top of the viewport */
   left: 0; /* Align to the left of the viewport */
+}
+.sidebar-button {
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s, filter 0.3s; /* Add transition for smooth effect */
+}
+
+.sidebar-button:hover {
+  transform: scale(1.1); /* Increase size on hover */
+  filter: brightness(150%); /* Increase brightness on hover */
 }
 
 /* App.css */
@@ -67,10 +75,17 @@
   justify-content: center; /* Center content horizontally */
   align-items: center; /* Center content vertically */
   overflow-x: hidden; /* Hide horizontal overflow */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
 }
 
 .sidebar-home-button {
   max-width:100%;
+  height: auto;
+}
+
+.sidebar-home-button {
+  max-width: 100%;
   height: auto;
 }
 
@@ -81,9 +96,7 @@
 
 /* Media query for smaller devices */
 @media (min-width: 769px) {
-  .sidebar {
-    flex-direction: row;
-  }
+
   .sidebar-home-button {
     max-width: 100%;
     height: auto;
@@ -275,31 +288,32 @@
 }
 
 .contact-container {
-  width: 30%; /* Adjust the width as needed */
+  width: 50vw; /* Adjust the width for mobile devices */
+
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
   margin: 0 auto; /* Center the container horizontally */
   padding: 2%; /* Add padding to the container */
   background-color: rgba(252, 234, 234, 0.6);
   border-radius: 25px;
   line-height: 2.5rem;
-}
-
-
-.contact-container #contactInfo {
-  margin-bottom: 10px; /* Adjust margin for spacing */
-}
-
-.contact-container a {
   text-decoration: underline;
   color: midnightblue;
   font-size: 1.5rem;
 }
 
-
-
 @media (max-width: 768px) {
+  .sidebar {
+    width: 30vw; /* Adjust the width relative to the viewport width */
+  }
+
+  .main-image {
+    width: 100%; /* Adjust the width to fill the container on smaller screens */
+  }
+
   .contact-container {
-    width: 90%; /* Adjust width for smaller screens */
+    width: 90%; /* Adjust the width for smaller screens */
     padding: 5%; /* Adjust padding for smaller screens */
     text-align: center; /* Center text on smaller screens */
   }
-};
+}

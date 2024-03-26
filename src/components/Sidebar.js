@@ -13,7 +13,7 @@ const Sidebar = () => {
     return (
         <div className="sidebar">
             <NavLink to="/" activeClassName="active" className={location.pathname === '/' ? 'active' : ''}>
-                <img src={homeImage} alt="Home" className="sidebar-home-button" />
+                <img src={homeImage} alt="Home" className="sidebar-button" />
             </NavLink>
             <NavLink to="/projects" activeClassName="active" className={location.pathname === '/projects' ? 'active' : ''}>
                 <img src={projectsImage} alt="Projects" className="sidebar-button" />
