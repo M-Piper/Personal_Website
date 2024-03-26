@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
 
+/*HOMEPAGE AND GLOBAL CSS*/
 *, *::before, *::after {
   font-family: "Madimi One", sans-serif;
   font-weight: 400;
@@ -13,8 +14,44 @@
   background: transparent;
 }
 
+.App {
+  text-align: center;
+}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  text-align: center;
+  font-size: calc(10px + 7vmin);
+  color: midnightblue;
+  text-shadow: 2px 2px 0 white, -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white;
+}
+
+.home-bg {
+  background-image: url('./images/home.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column; /* Change to column layout */
+  justify-content: center;
+  align-items: center; /* Center horizontally */
+}
+
+
+
+/*BUTTON RELATED CSS*/
+
 .button-container {
   position: relative;
+}
+
+.button-container.small-button {
+  display: flex;
+  justify-content: flex-start; /* Align button to the start (left) of its container */
+  margin-bottom: 20px; /* Add margin to separate button from text */
 }
 
 .main-image {
@@ -36,52 +73,111 @@
   opacity: 1;
 }
 
-.App {
-  text-align: center;
-}
-.App-header {
-  background-color: #282c34;
-  background-image: url('./images/gridbook_pen_mess4.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: calc(10px + 5vmin);
-  color: midnightblue;
-  text-shadow: 2px 2px 0 white, -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white; /* Create white outline */
-}
-.App-header h1 {
-  margin-top: 20px; /* Adjust the value as needed */
-}
 
-.home-bg {
-  background-image: url('./images/gridbook_pen_mess5.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
+
+
+/*ABOUT PAGE CSS */
 
 .about-bg {
-  background-image: url('./images/artbookpen2.jpg');
+  background-image: url('./images/about.jpg');
   background-size: cover;
   background-position: center;
-  height: 100vh;
+  height: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center all items horizontally */
+  border-radius: 25px;
+  text-align: center; /* Adjust text alignment as needed */
+  padding: 1rem;
+  background-color: rgba(252, 234, 234, 0.9);
+}
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px; /* Adjust the max-width as needed */
+  padding: 0 20px; /* Add horizontal padding to the content */
+}
+.about-container img {
+  width: 100%; /* Ensure the image fills the container width */
+  max-width: 100%;
+  height: auto;
+}
+
+.about-container p {
+  font-size: 1rem;
+  line-height: 1.5;
+
+}
+
+.button-container {
+  position: relative; /* Change to relative position for stacking */
+  top: 0; /* Reset top position */
+  margin-bottom: 0; /* Remove margin for smaller screens */
+
+}
+
+.button-container.small-button {
+  position: relative; /* Change to relative position for stacking */
+  height: 60vh;
+  bottom: 5%;
+  top:1%;
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column; /* Stack elements vertically on small screens */
+    align-items: stretch; /* Stretch items to fill the container width */
+  }
+
+  .about-container {
+    padding-top: 0; /* Reset padding */
+    text-align: left; /* Adjust text alignment */
+  }
+  .button-container {
+    position: relative; /* Change to relative position for stacking */
+    top: 0; /* Reset top position */
+    margin-bottom: 0; /* Remove margin for smaller screens */
+  }
+
+  .button-container.small-button {
+    position: relative; /* Change to relative position for stacking */
+    top: 0; /* Reset top position */
+    margin-bottom: 0; /* Remove margin for smaller screens */
+  }
+}
+
+
+
+/*CV PAGE CSS*/
+.cv-bg h3 {
+  font-size: 1rem;
+  text-decoration: underline;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.cv-bg p {
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.cv-bg a {
+  text-decoration: none;
+  color: midnightblue;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  text-align: left;
 }
 
 .cv-bg {
-  background-image: url('./images/gridbook_pen_mess.jpg');
+  background-image: url('./images/cv.jpg');
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -89,145 +185,41 @@
   justify-content: center; /* Center content horizontally */
   align-items: center; /* Center content vertically */
 }
-.projects-bg {
-  background-image: url('./images/mess.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
+
+.cv-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.contact-bg {
-  background-image: url('./images/gridbook_doodle.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.menu-links {
-  font-family: "Madimi One", sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Vertically center the links */
-  align-items: flex-start; /* Align links to the left */
-  padding: 5% 2%; /* Adjust padding as a percentage of viewport */
-  position: fixed; /* Fix the position of the menu */
-  top: 0; /* Position the menu at the top */
-  left: 0; /* Position the menu at the left */
-  height: 100vh; /* Set full height to fill the viewport */
-  width: 10%; /* Set a percentage width for the menu */
-  min-width: 150px; /* Set a minimum width */
-  background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background */
-}
-
-
-.menu-links a {
-  font-size: 2rem; /* Increase font size */
-  margin-bottom: 30px; /* Increase margin between links */
-}
-
-.cv-content {
-  position: relative; /* Add relative positioning */
-  margin-left: 200px;
-  max-width: 800px; /* Limit content width */
-  width: 100%;
-}
-
-.navigation-arrows {
-  position: absolute;
-  top: 50%;
-  display: flex;
-  left: -200px; /* making this lower moves arrow to left */
-  right: -200px; /* making this lower, moves arrow to right*/
-}
-
-.navigation-arrows button {
-  background-color: transparent;
-  border: none;
-  font-size: 100px;
-  cursor: pointer;
-  color: midnightblue;
-}
-
-.navigation-arrows button:first-child {
-  margin-right: auto; /* Push the left arrow to the left */
-}
-
-.navigation-arrows button:last-child {
-  margin-left: auto; /* Push the right arrow to the right */
-}
-
-.section-links {
-  display: flex;
-  justify-content: space-between;
-  position: fixed; /* Change to fixed positioning */
-  top: 220px; /* Adjust the top position as needed */
-  left: 55%; /* Center horizontally */
-  transform: translateX(-50%); /* Center horizontally */
-  width: 40%; /* Adjust width as needed */
-  z-index: 999; /* Ensure buttons are on top of other content */
-}
-
-.section-links button {
-  font-size: 2rem;
+  align-items: flex-start; /* Align items to the start (left) of the container */
+  border-radius: 25px;
+  padding: 1%;
   background-color: rgba(252, 234, 234, 0.9);
-  /*text-shadow: 2px 2px 0 white, -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white;*/
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  color: midnightblue;
-  padding: 10px 20px; /* Add padding for better appearance */
-  transition: color 0.3s ease; /* Add transition for smoother effect */
 }
 
-.section-links button.active {
-  background-color: midnightblue; /* Change background color for active button */
-  color: white; /* Change text color for active button */
-}
-.about-bg h1,
-.projects-bg h1,
-.contact-bg h1,
-.cv-bg h1 {
-  color: midnightblue;
-  font-size: 4rem;
-  margin-bottom: 20px;
-  text-align: center; /* Center the "CV" header */
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+  .cv-container {
+    align-items: center; /* Center items horizontally for smaller screens */
+  }
+
+  .button-container {
+    position: relative; /* Change to relative position for stacking */
+    top: 0; /* Reset top position */
+    margin-bottom: 0; /* Remove margin for smaller screens */
+  }
+
+  .button-container.small-button {
+    position: relative; /* Change to relative position for stacking */
+    top: 0; /* Reset top position */
+    margin-bottom: 0; /* Remove margin for smaller screens */
+  }
 }
 
-.about-bg h2,
-.projects-bg h2,
-.contact-bg h2,
-.cv-bg h2 {
-  font-size: 2.5rem;
-}
 
-.cv-bg h3 {
-  font-size: 1.5rem;
-  text-decoration: underline;
-  text-align: left;
-  margin-left: 75px;
-  margin-bottom: 5px;
-}
-
-.about-bg p,
-.projects-bg p,
-.contact-bg p{
+/*PROJECTS PAGE CSS*/
+.projects-bg p{
   font-size: 1.5rem;
   line-height: 1.5;
 }
 
-.cv-bg p {
-  font-size: 1.5rem;
-  line-height: 1.5;
-}
-
-.about-bg a,
 .projects-bg a{
   text-decoration: none;
   color: midnightblue;
@@ -235,63 +227,82 @@
   margin-bottom: 20px;
 }
 
-.cv-bg a {
-  text-decoration: none;
-  color: midnightblue;
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  text-align: left;
-}
-
-.contact-bg a {
-  text-decoration: underline;
-  color: midnightblue;
-  font-size: 3.5rem;
-  margin-bottom: 20px;
-}
-
-.about-content {
-  max-width: 800px; /* Limit content width */
-  padding: 20px;
-  margin-left: 300px;
-}
-
-#contactInfo{
-  margin-bottom: 100px;
-}
-
-#contactEmail{
-  margin-top:500px;
-  margin-bottom: 100px;
-}
-
-
-.hover-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.main-image:hover + .hover-image {
-  opacity: 1;
-}
-
-
-.large-button {
-  position: absolute;
+.projects-bg {
+  background-image: url('./images/projects.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-size: contain; /* Ensure the background image covers the button area */
-  background-color: rgba(255, 215, 215, 0.7);
-  border-radius: 75px;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: none;
 }
 
-.large-button:hover {
-  filter: brightness(150%);
+
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+  .button-container {
+    position: relative; /* Change to relative position for stacking */
+    top: 0; /* Reset top position */
+    margin-bottom: 0; /* Remove margin for smaller screens */
+  }
+
+  .button-container.small-button {
+    position: relative; /* Change to relative position for stacking */
+    top: 0; /* Reset top position */
+    margin-bottom: 0; /* Remove margin for smaller screens */
+  }
+}
+
+
+
+
+/*CONTACT PAGE CSS*/
+.contact-bg {
+  background-image: url('./images/contact.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-container {
+  margin-top:2%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the start (left) of the container */
+  border-radius: 25px;
+  padding: 1%;
+  background-color: rgba(252, 234, 234, 0.6);
+  line-height:2.5rem;
+}
+
+.contact-container #contactInfo {
+  margin-bottom: 10px; /* Adjust margin for spacing */
+}
+
+.contact-container a {
+  text-decoration: underline;
+  color: midnightblue;
+  font-size: 1.5rem;
+}
+
+
+
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+  .contact-container {
+    align-items: center; /* Center items horizontally for smaller screens */
+  }
+
+  .button-container {
+    position: relative; /* Change to relative position for stacking */
+    top: 0; /* Reset top position */
+    margin-bottom: 0; /* Remove margin for smaller screens */
+  }
+
+  .button-container.small-button {
+    position: relative; /* Change to relative position for stacking */
+    top: 0; /* Reset top position */
+    margin-bottom: 0; /* Remove margin for smaller screens */
+  }
 }
