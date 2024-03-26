@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import mainImage from '../buttons/no_selection.png';
+
+import mainImage from '../buttons/main.png';
+import mainHoverImage from '../buttons/mainHover.png';
 import projectsHoverImage from '../buttons/projects.png';
 import aboutHoverImage from '../buttons/about.png';
 import cvHoverImage from '../buttons/cv.png';
 import contactHoverImage from '../buttons/contact.png';
-import homeHoverImage from '../buttons/home.png';
+import projectsImage from '../buttons/projectsButton.png';
+import contactImage from '../buttons/contactButton.png';
+import cvImage from '../buttons/cvButton.png';
+import aboutImage from '../buttons/aboutButton.png';
 import PiperButton from './PiperButton';
+import Button from './Button';
 import { projectPoly, aboutPoly, contactPoly, cvPoly, homePoly } from './PolygonCoordinates';
 import '../App.css';
+
 const Home = () => {
     const [hoverImage, setHoverImage] = useState(null);
-    const [defaultImage, setDefaultImage] = useState(mainImage)
-    const [touchStart, setTouchStart] = useState(0);
+    const [isHovering, setIsHovering] = useState(false);
+    const [isInteracting, setIsInteracting] = useState(false);
+    const [mouseCoordinates, setMouseCoordinates] = useState({ x: 0, y: 0 });
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -33,130 +41,91 @@ const Home = () => {
             navigate('/cv');
         } else if (hoverImage === contactHoverImage) {
             navigate('/contact');
-        } else if (hoverImage === homeHoverImage) {
+        } else if (hoverImage === mainHoverImage) {
             navigate('/');
-
         } else {
             navigate('/');
         }
     };
-    const handleMouseMove = (event) => {
-        // Get coordinates of the mouse pointer
-        const offsetX = event.nativeEvent.offsetX;
-        const offsetY = event.nativeEvent.offsetY;
 
-        // Check if the mouse is within any of the polygons
-        const { project, about, contact, cv, home } = isPointInPolygons(offsetX, offsetY);
-
-        // Set hover image based on which polygon is being hovered over
-        if (project) {
-            setHoverImage(projectsHoverImage);
-        } else if (about) {
-            setHoverImage(aboutHoverImage);
-        } else if (contact) {
-            setHoverImage(contactHoverImage);
-        } else if (cv) {
-            setHoverImage(cvHoverImage);
-        } else if (home) {
-            setHoverImage(homeHoverImage);
+    const handleMouseEnter = () => {
+        setIsHovering(true);
+        if (hoverImage === projectsHoverImage) {
+            setHoverImage(projectsImage);
         } else {
-            setHoverImage(null); // Clear hover image if not hovering over any polygon
+            setHoverImage(mainHoverImage);
         }
-        console.log('Hover Image:', hoverImage); // cosole log to debug links issue
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovering(false);
+        setHoverImage(null);
+    };
+
+    const handleMouseMove = (event) => {
+        if (isInteracting) {
+            const { clientX, clientY } = event;
+            setMouseCoordinates({ x: clientX, y: clientY });
+        }
+    };
+
+    const handleMouseDown = (event) => {
+        event.preventDefault(); // Prevent default browser behavior
+        setIsInteracting(true);
+        const { clientX, clientY } = event;
+        setMouseCoordinates({ x: clientX, y: clientY });
+    };
+
+    const handleMouseUp = () => {
+        setIsInteracting(false);
     };
 
     const handleTouchStart = (event) => {
-        event.stopPropagation(); // Add this line
-        setTouchStart(Date.now());
-        const touchX = event.touches[0].clientX; // Get the X coordinate of the touch
-        const touchY = event.touches[0].clientY; // Get the Y coordinate of the touch
-        const { project, about, contact, cv, home } = isPointInPolygons(touchX, touchY);
-        // Set the hover image based on which polygon the touch is within
-        if (project) {
-            setHoverImage(projectsHoverImage);
-        } else if (about) {
-            setHoverImage(aboutHoverImage);
-        } else if (contact) {
-            setHoverImage(contactHoverImage);
-        } else if (cv) {
-            setHoverImage(cvHoverImage);
-        } else if (home) {
-            setHoverImage(homeHoverImage);
-        } else {
-            setHoverImage(mainImage); // Set the default image if the touch is not within any polygon
-        }
+        setIsInteracting(true);
+        const { clientX, clientY } = event.touches[0];
+        setMouseCoordinates({ x: clientX, y: clientY });
     };
 
-    const handleTouchEnd = (event) => {
-        event.stopPropagation(); // Add this line
-        // Navigate to the appropriate page
-        if (hoverImage === aboutHoverImage) {
-            navigate('/about');
-        } else if (hoverImage === cvHoverImage) {
-            navigate('/cv');
-        } else if (hoverImage === contactHoverImage) {
-            navigate('/contact');
-        } else if (hoverImage === projectsHoverImage) {
-            navigate('/projects');
-        } else if (hoverImage === homeHoverImage) {
-            navigate('/');
-        }
-        setHoverImage(null); // Clear hover image when touch ends}
-    };
-
-    const isPointInPolygons = (x, y) => {
-        // Check if the point is within any of the polygons
-        const isInsideProject = isPointInPolygon(projectPoly, x, y);
-        const isInsideAbout = isPointInPolygon(aboutPoly, x, y);
-        const isInsideContact = isPointInPolygon(contactPoly, x, y);
-        const isInsideCV = isPointInPolygon(cvPoly, x, y);
-        const isInsideHome = isPointInPolygon(homePoly, x, y);
-        return {
-            project: isInsideProject,
-            about: isInsideAbout,
-            contact: isInsideContact,
-            cv: isInsideCV,
-            home: isInsideHome
-        };
-    };
-    const isPointInPolygon = (polygon, x, y) => {
-        let isInside = false;
-
-        // Ray casting algorithm to check if the point is inside the polygon
-        for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-            const xi = polygon[i][0];
-            const yi = polygon[i][1];
-            const xj = polygon[j][0];
-            const yj = polygon[j][1];
-
-            const intersect =
-                yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
-
-            if (intersect) isInside = !isInside;
-        }
-
-        return isInside;
+    const handleTouchEnd = () => {
+        setIsInteracting(false);
     };
 
     return (
-        <div className="home-bg">
+        <div className="home-bg" onMouseMove={handleMouseMove}>
             <h1 className="header">Margaret Piper</h1>
+
+            <div className="button-container">
+                <Button image={projectsImage} destination="/projects" />
+                <Button image={aboutImage} destination="/about" />
+                <Button image={cvImage} destination="/cv" />
+                <Button image={contactImage} destination="/contact" />
+            </div>
+
             <div
-                className="button-container"
-                onMouseMove={handleMouseMove}
+                className="main-image-button"
+                onClick={handleButtonClick}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onMouseDown={handleMouseDown}
+                onMouseUp={handleMouseUp}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+                style={{ position: 'relative' }} // Allow positioning of the line
             >
-                {/* Pass the 'to' prop to PiperButton */}
-                <PiperButton
-                    image={mainImage}
-                    hoverImage={hoverImage}
-                    onClick={handleButtonClick}
-                    onTouchStart={handleTouchStart}
-                    onTouchEnd={handleTouchEnd}
-                    scaleFactor={0.8}
+                <img
+                    src={isHovering && hoverImage ? hoverImage : mainImage}
+                    alt="Main"
+                    className="main-image"
+                    style={{ pointerEvents: 'none' }} // Prevent mouse events on the image itself
                 />
+                {isInteracting && (
+                    <svg className="line" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}>
+                        <line x1={mouseCoordinates.x} y1={mouseCoordinates.y} x2="20%" y2="50%" stroke="black" strokeDasharray="5" strokeWidth="4" />
+                    </svg>
+                )}
             </div>
         </div>
     );
-}
+};
 
 export default Home;
