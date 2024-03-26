@@ -77,18 +77,12 @@
 
 
 /*ABOUT PAGE CSS */
-.about-bg p {
-  font-size: 1rem;
-  line-height: 1.5;
-  margin-bottom: 20px;
-  text-align: left;
-}
 
 .about-bg {
   background-image: url('./images/about.jpg');
   background-size: cover;
   background-position: center;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -97,18 +91,55 @@
 .about-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align items to the start (left) of the container */
+  align-items: center; /* Center all items horizontally */
   border-radius: 25px;
-  text-align: left; /* Adjust text alignment as needed */
+  text-align: center; /* Adjust text alignment as needed */
   padding: 1rem;
   background-color: rgba(252, 234, 234, 0.9);
 }
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px; /* Adjust the max-width as needed */
+  padding: 0 20px; /* Add horizontal padding to the content */
+}
+.about-container img {
+  width: 100%; /* Ensure the image fills the container width */
+  max-width: 100%;
+  height: auto;
+}
 
-@media (max-width: 768px) { /* Adjust breakpoint as needed */
-  .about-container {
-    align-items: center; /* Center items horizontally for smaller screens */
+.about-container p {
+  font-size: 1rem;
+  line-height: 1.5;
+
+}
+
+.button-container {
+  position: relative; /* Change to relative position for stacking */
+  top: 0; /* Reset top position */
+  margin-bottom: 0; /* Remove margin for smaller screens */
+
+}
+
+.button-container.small-button {
+  position: relative; /* Change to relative position for stacking */
+  height: 60vh;
+  bottom: 5%;
+  top:1%;
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column; /* Stack elements vertically on small screens */
+    align-items: stretch; /* Stretch items to fill the container width */
   }
 
+  .about-container {
+    padding-top: 0; /* Reset padding */
+    text-align: left; /* Adjust text alignment */
+  }
   .button-container {
     position: relative; /* Change to relative position for stacking */
     top: 0; /* Reset top position */

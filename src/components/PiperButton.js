@@ -23,7 +23,6 @@ const PiperButton = ({ image, hoverImage, onClick, to, smallButton, scaleFactor 
     };
 
     const handleTouchEnd = () => {
-        setTouching(false);
         // Hide hover image when touch ends
         setHovering(false);
         // Navigate to the link if onClick exists
@@ -32,12 +31,6 @@ const PiperButton = ({ image, hoverImage, onClick, to, smallButton, scaleFactor 
         }
     };
 
-    const handleClick = () => {
-        // Navigate to the link if onClick exists and there's no touch action
-        if (onClick && !touching) {
-            onClick();
-        }
-    };
 
     return (
         <div
@@ -46,7 +39,7 @@ const PiperButton = ({ image, hoverImage, onClick, to, smallButton, scaleFactor 
             onMouseLeave={handleMouseLeave}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            onClick={handleClick}
+            onClick={onClick}
         >
             <Link to={to}>
                 <img
