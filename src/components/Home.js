@@ -1,130 +1,92 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import Sidebar from './Sidebar.js'
 import mainImage from '../buttons/main.png';
-import mainHoverImage from '../buttons/mainHover.png';
-import projectsHoverImage from '../buttons/projects.png';
-import aboutHoverImage from '../buttons/about.png';
-import cvHoverImage from '../buttons/cv.png';
-import contactHoverImage from '../buttons/contact.png';
+import mainHover from '../buttons/mainHover.png'
+import main1Image from '../buttons/main1.png';
+import main2Image from '../buttons/main2.png';
+import main3Image from '../buttons/main3.png';
+import main4Image from '../buttons/main4.png';
 import projectsImage from '../buttons/projectsButton.png';
-import contactImage from '../buttons/contactButton.png';
-import cvImage from '../buttons/cvButton.png';
 import aboutImage from '../buttons/aboutButton.png';
-import PiperButton from './PiperButton';
+import cvImage from '../buttons/cvButton.png';
+import contactImage from '../buttons/contactButton.png';
 import Button from './Button';
-import { projectPoly, aboutPoly, contactPoly, cvPoly, homePoly } from './PolygonCoordinates';
-import '../App.css';
 
 const Home = () => {
-    const [hoverImage, setHoverImage] = useState(null);
-    const [isHovering, setIsHovering] = useState(false);
-    const [isInteracting, setIsInteracting] = useState(false);
-    const [mouseCoordinates, setMouseCoordinates] = useState({ x: 0, y: 0 });
+    const [hoverImage, setHoverImage] = useState(mainImage);
+
     const navigate = useNavigate();
 
-    useEffect(() => {
-        return () => {
-            setHoverImage(null); // Reset hoverImage state when component unmounts
-        };
-    }, []);
-
-    const handleButtonClick = () => {
-        console.log('Clicked! Hover Image:', hoverImage); // Add this line
-        // Determine the appropriate URL based on the current hover state
-        let destination;
-        if (hoverImage === projectsHoverImage) {
-            navigate('/projects');
-        } else if (hoverImage === aboutHoverImage) {
-            navigate('/about');
-        } else if (hoverImage === cvHoverImage) {
-            navigate('/cv');
-        } else if (hoverImage === contactHoverImage) {
-            navigate('/contact');
-        } else if (hoverImage === mainHoverImage) {
-            navigate('/');
-        } else {
-            navigate('/');
-        }
+    const handleButtonClick = (destination) => {
+        navigate(destination);
     };
 
-    const handleMouseEnter = () => {
-        setIsHovering(true);
-        if (hoverImage === projectsHoverImage) {
-            setHoverImage(projectsImage);
-        } else {
-            setHoverImage(mainHoverImage);
+    const handleMainImageHover = () => {
+        setHoverImage(mainHover);
+    };
+
+    const handleMainImageLeave = () => {
+        setHoverImage(mainImage);
+    };
+    const handleMouseEnter = (image) => {
+        if (image === projectsImage) {
+            setHoverImage(main1Image);
+        } else if (image === aboutImage) {
+            setHoverImage(main2Image);
+        } else if (image === cvImage) {
+            setHoverImage(main3Image);
+        } else if (image === contactImage) {
+            setHoverImage(main4Image);
         }
     };
 
     const handleMouseLeave = () => {
-        setIsHovering(false);
-        setHoverImage(null);
-    };
-
-    const handleMouseMove = (event) => {
-        if (isInteracting) {
-            const { clientX, clientY } = event;
-            setMouseCoordinates({ x: clientX, y: clientY });
-        }
-    };
-
-    const handleMouseDown = (event) => {
-        event.preventDefault(); // Prevent default browser behavior
-        setIsInteracting(true);
-        const { clientX, clientY } = event;
-        setMouseCoordinates({ x: clientX, y: clientY });
-    };
-
-    const handleMouseUp = () => {
-        setIsInteracting(false);
-    };
-
-    const handleTouchStart = (event) => {
-        setIsInteracting(true);
-        const { clientX, clientY } = event.touches[0];
-        setMouseCoordinates({ x: clientX, y: clientY });
-    };
-
-    const handleTouchEnd = () => {
-        setIsInteracting(false);
+        setHoverImage(mainImage);
     };
 
     return (
-        <div className="home-bg" onMouseMove={handleMouseMove}>
+        <div className="home-bg">
             <h1 className="header">Margaret Piper</h1>
 
             <div className="button-container">
-                <Button image={projectsImage} destination="/projects" />
-                <Button image={aboutImage} destination="/about" />
-                <Button image={cvImage} destination="/cv" />
-                <Button image={contactImage} destination="/contact" />
+                <Button
+                    image={projectsImage}
+                    destination="/projects"
+                    onMouseEnter={() => handleMouseEnter(projectsImage)}
+                    onMouseLeave={handleMouseLeave}
+                />
+                <Button
+                    image={aboutImage}
+                    destination="/about"
+                    onMouseEnter={() => handleMouseEnter(aboutImage)}
+                    onMouseLeave={handleMouseLeave}
+                />
+                <Button
+                    image={cvImage}
+                    destination="/cv"
+                    onMouseEnter={() => handleMouseEnter(cvImage)}
+                    onMouseLeave={handleMouseLeave}
+                />
+                <Button
+                    image={contactImage}
+                    destination="/contact"
+                    onMouseEnter={() => handleMouseEnter(contactImage)}
+                    onMouseLeave={handleMouseLeave}
+                />
             </div>
 
-            <div
-                className="main-image-button"
-                onClick={handleButtonClick}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                onMouseDown={handleMouseDown}
-                onMouseUp={handleMouseUp}
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
-                style={{ position: 'relative' }} // Allow positioning of the line
-            >
+            <div className="main-image-button">
                 <img
-                    src={isHovering && hoverImage ? hoverImage : mainImage}
+                    src={hoverImage}
                     alt="Main"
                     className="main-image"
-                    style={{ pointerEvents: 'none' }} // Prevent mouse events on the image itself
+                    onMouseEnter={handleMainImageHover}
+                    onMouseLeave={handleMainImageLeave}
                 />
-                {isInteracting && (
-                    <svg className="line" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}>
-                        <line x1={mouseCoordinates.x} y1={mouseCoordinates.y} x2="20%" y2="50%" stroke="black" strokeDasharray="5" strokeWidth="4" />
-                    </svg>
-                )}
             </div>
         </div>
+
     );
 };
 

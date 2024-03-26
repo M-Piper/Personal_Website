@@ -6,10 +6,12 @@ import About from './components/About';
 import CV from './components/CV';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+import Sidebar from './components/Sidebar';
 
 const App = () => {
     return (
         <Router>
+            <div className="app-container">
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
@@ -17,6 +19,7 @@ const App = () => {
                     <Route path="/cv" element={<CV />} />
                     <Route path="/contact" element={<Contact />} />
                 </Routes>
+            </div>
         </Router>
     );
 }
