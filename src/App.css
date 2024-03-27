@@ -30,33 +30,96 @@
 }
 
 .home-bg {
-  background-image: url('./images/home.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
-  flex-direction: column; /* Change to column layout */
-  justify-content: center;
-  align-items: center; /* Center horizontally */
-}
-
-
-
-/*BUTTON RELATED CSS*/
-
-.button-container {
-  position: relative;
-}
-
-.button-container.small-button {
-  display: flex;
-  justify-content: flex-start; /* Align button to the start (left) of its container */
-  margin-bottom: 20px; /* Add margin to separate button from text */
-}
+    background-image: url('./images/home.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+  width: 100vw;
+    display: flex; /* Change to flexbox layout */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+  }
 
 .main-image {
-  width: 100%;
+  max-width: 60%; /* Ensure the image doesn't exceed its original size */
+  height: auto; /* Maintain the aspect ratio */
+}
+
+/*SIDEBAR RELATED CSS*/
+.sidebar {
+  width: 100%; /* Adjust the width to span the entire width of the viewport */
+  min-width: 375px; /* Set a minimum width for smaller screens */
+  height: auto; /* Adjust height dynamically based on content */
+  background-color: #f0f0f0; /* Example background color */
+  position: fixed; /* Fixed position to keep it visible while scrolling */
+  top: 0; /* Align to the top of the viewport */
+  left: 0; /* Align to the left of the viewport */
+  display: flex; /* Use flexbox layout */
+  justify-content: space-evenly; /* Evenly space the items along the main axis */
+  align-items: center; /* Center items vertically */
+  background-color: rgba(252, 234, 234, 0.8);
+}
+
+.sidebar-button {
+  max-width: 100%;
   height: auto;
+  transition: transform 0.3s, filter 0.3s; /* Add transition for smooth effect */
+}
+
+.sidebar-button:hover {
+  transform: scale(1.1); /* Increase size on hover */
+  filter: brightness(150%); /* Increase brightness on hover */
+}
+
+
+/* App.css */
+.app-container {
+  width: 100vw; /* Ensure the container fills the viewport width */
+  height: 100vh; /* Ensure the container fills the viewport height */
+  display: flex; /* Use flexbox layout */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  overflow-x: hidden; /* Hide horizontal overflow */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+.sidebar-home-button {
+  max-width:100%;
+  height: auto;
+}
+
+.sidebar-home-button {
+  max-width: 100%;
+  height: auto;
+}
+
+.sidebar-button {
+  max-width: 100%;
+  height: auto;
+}
+
+/*HOME PAGE BUTTON CSS*/
+.button-container {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: flex-start; /* Align items to the start (left) of the container */
+  height:60vh; /* Adjust the height of the container */
+  padding-left: 10vh; /* Add padding to the left to create space between buttons left edge */
+}
+
+.button {
+  margin-bottom: 10px; /* Add margin between buttons */
+  width: 90%; /* Set the width relative to the container */
+  max-width: 100px; /* Set a maximum width to prevent excessive scaling */
+  height: auto; /* Automatically adjust height to maintain aspect ratio */
+}
+
+
+.button img {
+  width: 90%; /* Set the width relative to the container */
+  max-width: 100px; /* Set a maximum width to prevent excessive scaling */
+  height: auto; /* Automatically adjust height to maintain aspect ratio */
 }
 
 .hover-image {
@@ -73,114 +136,116 @@
   opacity: 1;
 }
 
-
-
-
 /*ABOUT PAGE CSS */
-
 .about-bg {
-  background-image: url('./images/about.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.about-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center all items horizontally */
-  border-radius: 25px;
-  text-align: center; /* Adjust text alignment as needed */
-  padding: 1rem;
-  background-color: rgba(252, 234, 234, 0.9);
+  background-image: url('./images/about.jpg');
+  background-size: cover; /* or background-size: contain; */
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh; /* Adjust height as needed */
+  width: 100vw;
+  overflow: visible; /* Adjust overflow property */
 }
 .content-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 800px; /* Adjust the max-width as needed */
-  padding: 0 20px; /* Add horizontal padding to the content */
+  width: 90%;
+  max-width: 800px;
+  padding: 20px;
+  margin-top: 10vh;
+  background-color: rgba(252, 234, 234, 0.9);
+  border-radius: 25px;
+  font-size: 1.25rem;
+  line-height: 2.25rem;
 }
-.about-container img {
-  width: 100%; /* Ensure the image fills the container width */
+
+/*CV PAGE CSS*/
+/*CV PAGE CSS*/
+.carousel-container {
+  position: absolute;
+  top: 60px; /* Adjust to avoid overlap with the sidebar */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex; /* Use flexbox layout */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+}
+
+.carousel {
+  width: 90%; /* Adjust the width of the carousel */
+  max-width: 70vw; /* Set a maximum width */
+  max-height: 50vh;
+}
+
+.carousel-slide {
+  position: relative;
+  max-width: 100vw; /* Ensure the slides fill the carousel width */
+  max-height: 100vh; /* Set a maximum height for the carousel slides */
+}
+
+.carousel-image {
   max-width: 100%;
   height: auto;
 }
 
-.about-container p {
-  font-size: 1rem;
-  line-height: 1.5;
-
+.carousel-thumb {
+  width: 50px; /* Adjust thumbnail width */
+  height: 50px; /* Adjust thumbnail height */
+  object-fit: cover; /* Crop the thumbnail */
 }
 
-.button-container {
-  position: relative; /* Change to relative position for stacking */
-  top: 0; /* Reset top position */
-  margin-bottom: 0; /* Remove margin for smaller screens */
-
+.carousel-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  color: navy;
+  text-align: center;
+  max-width: 80%; /* Adjust maximum width */
+  width: 70%; /* Adjust width */
+  max-height: 90%; /* Adjust maximum height */
+  height: 90%; /* Adjust height */
 }
 
-.button-container.small-button {
-  position: relative; /* Change to relative position for stacking */
-  height: 60vh;
-  bottom: 5%;
-  top:1%;
+.carousel-container .thumbs-wrapper {
+  position: absolute;
+  bottom: 20px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
 }
 
-@media (max-width: 768px) {
-  .content-container {
-    flex-direction: column; /* Stack elements vertically on small screens */
-    align-items: stretch; /* Stretch items to fill the container width */
-  }
-
-  .about-container {
-    padding-top: 0; /* Reset padding */
-    text-align: left; /* Adjust text alignment */
-  }
-  .button-container {
-    position: relative; /* Change to relative position for stacking */
-    top: 0; /* Reset top position */
-    margin-bottom: 0; /* Remove margin for smaller screens */
-  }
-
-  .button-container.small-button {
-    position: relative; /* Change to relative position for stacking */
-    top: 0; /* Reset top position */
-    margin-bottom: 0; /* Remove margin for smaller screens */
-  }
+.carousel-container .thumb {
+  border: 2px solid transparent;
 }
 
+.carousel-container .thumb.selected,
+.carousel-container .thumb:hover {
+  border: 2px solid #fff;
+}
 
-
-/*CV PAGE CSS*/
-.cv-bg h3 {
-  font-size: 1rem;
-  text-decoration: underline;
-  text-align: left;
-  margin-bottom: 5px;
+/* Crop the main carousel image differently using background-position */
+.carousel-slide .main-image {
+  background-size: cover;
+  background-position: center top; /* Adjust to cut off the top 15% */
 }
 
 .cv-bg p {
-  font-size: 1rem;
-  line-height: 1.25;
-}
-
-.cv-bg a {
-  text-decoration: none;
-  color: midnightblue;
-  font-size: 1rem;
-  margin-bottom: 20px;
-  text-align: left;
+  font-size: 1.5rem;
+  line-height: 1.5;
 }
 
 .cv-bg {
+  position: relative;
   background-image: url('./images/cv.jpg');
   background-size: cover;
   background-position: center;
   height: 100vh;
+  width: 100vw;
+  overflow: visible;
   display: flex;
   justify-content: center; /* Center content horizontally */
   align-items: center; /* Center content vertically */
@@ -188,121 +253,129 @@
 
 .cv-container {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Align items to the start (left) of the container */
+  justify-content: space-between;
   border-radius: 25px;
-  padding: 1%;
-  background-color: rgba(252, 234, 234, 0.9);
+  background-color: rgba(252, 234, 234, 0.8);
+  width: 90%; /* Adjusted width for smaller screens */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 2%; /* Add padding to the container */
 }
-
-@media (max-width: 768px) { /* Adjust breakpoint as needed */
-  .cv-container {
-    align-items: center; /* Center items horizontally for smaller screens */
-  }
-
-  .button-container {
-    position: relative; /* Change to relative position for stacking */
-    top: 0; /* Reset top position */
-    margin-bottom: 0; /* Remove margin for smaller screens */
-  }
-
-  .button-container.small-button {
-    position: relative; /* Change to relative position for stacking */
-    top: 0; /* Reset top position */
-    margin-bottom: 0; /* Remove margin for smaller screens */
-  }
-}
-
 
 /*PROJECTS PAGE CSS*/
 .projects-bg p{
-  font-size: 1.5rem;
-  line-height: 1.5;
+  font-size: 1rem;
+  line-height: 1;
 }
 
 .projects-bg a{
   text-decoration: none;
   color: midnightblue;
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-bottom: 20px;
 }
 
 .projects-bg {
+  width: 100vw; /* Ensure the element fills the viewport width */
+  height: 100vh; /* Ensure the element fills the viewport height */
   background-image: url('./images/projects.jpg');
   background-size: cover;
   background-position: center;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-
-@media (max-width: 768px) { /* Adjust breakpoint as needed */
-  .button-container {
-    position: relative; /* Change to relative position for stacking */
-    top: 0; /* Reset top position */
-    margin-bottom: 0; /* Remove margin for smaller screens */
-  }
-
-  .button-container.small-button {
-    position: relative; /* Change to relative position for stacking */
-    top: 0; /* Reset top position */
-    margin-bottom: 0; /* Remove margin for smaller screens */
-  }
-}
-
-
-
 
 /*CONTACT PAGE CSS*/
 .contact-bg {
+  width: 100vw; /* Ensure the element fills the viewport width */
+  height: 100vh; /* Ensure the element fills the viewport height */
   background-image: url('./images/contact.jpg');
   background-size: cover;
   background-position: center;
-  height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
 }
 
 .contact-container {
-  margin-top:2%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Align items to the start (left) of the container */
-  border-radius: 25px;
-  padding: 1%;
+  width: 50vw; /* Adjust the width for mobile devices */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 2%; /* Add padding to the container */
   background-color: rgba(252, 234, 234, 0.6);
-  line-height:2.5rem;
-}
-
-.contact-container #contactInfo {
-  margin-bottom: 10px; /* Adjust margin for spacing */
-}
-
-.contact-container a {
+  border-radius: 25px;
+  line-height: 2.5rem;
   text-decoration: underline;
   color: midnightblue;
   font-size: 1.5rem;
 }
 
-
-
-@media (max-width: 768px) { /* Adjust breakpoint as needed */
-  .contact-container {
-    align-items: center; /* Center items horizontally for smaller screens */
+  .main-image {
+    width: 100%; /* Adjust the width to fill the container on smaller screens */
   }
 
+  .contact-container {
+    width: 90%; /* Adjust the width for smaller screens */
+    padding: 5%; /* Adjust padding for smaller screens */
+    text-align: center; /* Center text on smaller screens */
+  }
+
+
+/* Media query for iPhone devices and smaller screens */
+@media only screen
+and (max-width: 812px) /* iPhone X, XS, 11 Pro */
+and (-webkit-device-pixel-ratio: 2) /* iPhone 4, 4S, 5, 5S, 5C, SE */
+and (orientation: portrait),
+(max-width: 768px) {
+  .sidebar {
+    width: 100%; /* Adjust the width to span the entire width of the viewport for iPhones */
+  }
+
+  .button {
+    max-width: 150px; /* Adjust the maximum width for smaller screens */
+    height: auto; /* Automatically adjust height to maintain aspect ratio */
+  }
+
+  /* Adjust breakpoint as needed */
   .button-container {
     position: relative; /* Change to relative position for stacking */
     top: 0; /* Reset top position */
     margin-bottom: 0; /* Remove margin for smaller screens */
   }
 
-  .button-container.small-button {
-    position: relative; /* Change to relative position for stacking */
-    top: 0; /* Reset top position */
-    margin-bottom: 0; /* Remove margin for smaller screens */
+  .cv-container {
+    align-items: center; /* Center items horizontally for smaller screens */
   }
+
+  .about-container {
+    flex-direction: column; /* Stack elements vertically on small screens */
+    align-items: stretch; /* Stretch items to fill the container width */
+  }
+
+  .sidebar-home-button,
+  .sidebar-button {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .carousel {
+    width: 100%; /* Adjust the width to fill the entire viewport */
+    max-width: 100%; /* Set a maximum width to prevent excessive scaling */
+    max-height: 100%; /* Set a maximum height to prevent excessive scaling */
+  }
+
+  .carousel-slide .slide-text {
+    font-size: 14px; /* Adjust the font size for smaller screens */
+  }
+}
+
+/* Media query for larger devices */
+@media (min-width: 769px) {
+  .sidebar-home-button,
+  .sidebar-button {
+    max-width: 100%;
+    height: auto;
+  }
+
 }

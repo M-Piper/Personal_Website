@@ -8,7 +8,8 @@ import CV from './components/CV';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Home from './components/Home';
-import PiperButton from './components/PiperButton';
+import Button from './components/Button';
+import Sidebar from './components/Sidebar';
 import reportWebVitals from './reportWebVitals';
 import { Link, BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
