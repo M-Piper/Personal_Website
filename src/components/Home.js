@@ -15,8 +15,6 @@ import Button from './Button';
 
 const Home = () => {
     const [hoverImage, setHoverImage] = useState(mainImage);
-    const [showDottedLine, setShowDottedLine] = useState(false);
-    const [lineCoordinates, setLineCoordinates] = useState({ x1: 0, y1: 0, x2: 0, y2: 0 });
     const navigate = useNavigate();
 
     const handleButtonClick = (destination) => {
@@ -47,28 +45,6 @@ const Home = () => {
         setHoverImage(mainImage);
     };
 
-    const handleTouchStart = (e) => {
-        const touch = e.touches[0];
-        const mainImage = document.querySelector('.main-image');
-        const rect = mainImage.getBoundingClientRect();
-        const x = touch.clientX - rect.left; // X coordinate relative to the image
-        const y = touch.clientY - rect.top; // Y coordinate relative to the image
-        setLineCoordinates({ x1: rect.width / 2, y1: rect.height / 2, x2: x, y2: y });
-        setShowDottedLine(true);
-    };
-
-    const handleTouchMove = (e) => {
-        const touch = e.touches[0];
-        const mainImage = document.querySelector('.main-image');
-        const rect = mainImage.getBoundingClientRect();
-        const x = touch.clientX - rect.left; // X coordinate relative to the image
-        const y = touch.clientY - rect.top; // Y coordinate relative to the image
-        setLineCoordinates({ x1: rect.width / 2, y1: rect.height / 2, x2: x, y2: y });
-    };
-
-    const handleTouchEnd = () => {
-        setShowDottedLine(false);
-    };
 
     return (
         <div className="home-bg">
@@ -80,53 +56,38 @@ const Home = () => {
                     destination="/projects"
                     onMouseEnter={() => handleMouseEnter(projectsImage)}
                     onMouseLeave={handleMouseLeave}
+                    onClick={() => handleButtonClick("/projects")}
                 />
                 <Button
                     image={aboutImage}
                     destination="/about"
                     onMouseEnter={() => handleMouseEnter(aboutImage)}
                     onMouseLeave={handleMouseLeave}
+                    onClick={() => handleButtonClick("/about")}
                 />
                 <Button
                     image={cvImage}
                     destination="/cv"
                     onMouseEnter={() => handleMouseEnter(cvImage)}
                     onMouseLeave={handleMouseLeave}
+                    onClick={() => handleButtonClick("/cv")}
                 />
                 <Button
                     image={contactImage}
                     destination="/contact"
                     onMouseEnter={() => handleMouseEnter(contactImage)}
                     onMouseLeave={handleMouseLeave}
+                    onClick={() => handleButtonClick("/contact")}
                 />
             </div>
 
-            <div
-                className="main-image-button"
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-            >
-                {showDottedLine && (
-                    <svg className="dotted-line-svg" width="100%" height="100%">
-                        <line
-                            x1={lineCoordinates.x1}
-                            y1={lineCoordinates.y1}
-                            x2={lineCoordinates.x2}
-                            y2={lineCoordinates.y2}
-                            stroke="black"
-                            strokeDasharray="5"
-                        />
-                    </svg>
-                )}
-                <img
-                    src={hoverImage}
-                    alt="Main"
-                    className="main-image"
-                    onMouseEnter={handleMainImageHover}
-                    onMouseLeave={handleMainImageLeave}
-                />
-            </div>
+            <img
+                src={hoverImage}
+                alt="Main"
+                className="main-image"
+                onMouseEnter={handleMainImageHover}
+                onMouseLeave={handleMainImageLeave}
+            />
         </div>
     );
 };

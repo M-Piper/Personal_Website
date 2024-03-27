@@ -41,21 +41,26 @@
   }
 
 .main-image {
-  width: 90%; /* Adjust the width for mobile devices */
+  width:40vw;
   max-width: 100%; /* Ensure the image doesn't exceed its original size */
   height: auto; /* Maintain the aspect ratio */
 }
 
 /*SIDEBAR RELATED CSS*/
 .sidebar {
-  width: 20vw; /* Adjust the width relative to the viewport width */
+  width: 100%; /* Adjust the width to span the entire width of the viewport */
   min-width: 100px; /* Set a minimum width for smaller screens */
-  height: 100vh; /* Set height to full viewport height */
+  height: auto; /* Adjust height dynamically based on content */
   background-color: #f0f0f0; /* Example background color */
   position: fixed; /* Fixed position to keep it visible while scrolling */
   top: 0; /* Align to the top of the viewport */
   left: 0; /* Align to the left of the viewport */
+  display: flex; /* Use flexbox layout */
+  justify-content: space-evenly; /* Evenly space the items along the main axis */
+  align-items: center; /* Center items vertically */
+  background-color: rgba(252, 234, 234, 0.8);
 }
+
 .sidebar-button {
   max-width: 100%;
   height: auto;
@@ -122,6 +127,16 @@
 
 .button {
   margin-bottom: 10px; /* Add margin between buttons */
+  width: 90%; /* Set the width relative to the container */
+  max-width: 200px; /* Set a maximum width to prevent excessive scaling */
+  height: auto; /* Automatically adjust height to maintain aspect ratio */
+}
+
+
+.button img {
+  width: 90%; /* Set the width relative to the container */
+  max-width: 200px; /* Set a maximum width to prevent excessive scaling */
+  height: auto; /* Automatically adjust height to maintain aspect ratio */
 }
 
 .hover-image {
@@ -157,10 +172,10 @@
 .content-container {
    max-width: 55vw;
    padding: 20px; /* Adjust padding as needed */
-   margin-top: 20vh; /* Adjust the margin to move the container lower on the screen */
+   margin-top: 30vh; /* Adjust the margin to move the container lower on the screen */
    background-color: rgba(252, 234, 234, 0.9);
    border-radius: 25px;
-   font-size: 1.5rem; /* Set the font size to a larger value */
+   font-size: 1.25rem; /* Set the font size to a larger value */
   line-height: 2.25rem;
  }
 
@@ -200,6 +215,7 @@
   background-position: center;
   height: 100vh;
   width: 100vw;
+  overflow: visible;
   display: flex;
   justify-content: center; /* Center content horizontally */
   align-items: center; /* Center content vertically */
@@ -207,11 +223,15 @@
 
 .cv-container {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Align items to the start (left) of the container */
-  border-radius: 25px;
-  padding: 1%;
-  background-color: rgba(252, 234, 234, 0.9);
+  justify-content: space-between;
+  border-radius:25px;
+  background-color: rgba(252, 234, 234, 0.8);
+}
+
+.left-column,
+.right-column {
+  flex-basis: calc(50% - 1rem); /* Adjust the column width as needed */
+  padding: 0 1rem; /* Add padding to each column */
 }
 
 @media (max-width: 768px) { /* Adjust breakpoint as needed */
