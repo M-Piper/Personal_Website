@@ -419,6 +419,17 @@ and (orientation: portrait),
     height: auto;
   }
 
+
+  .about-carousel {
+    width: 100%; /* Adjust the width to fill the entire viewport */
+    max-width: 100%; /* Set a maximum width to prevent excessive scaling */
+    max-height: 100%; /* Set a maximum height to prevent excessive scaling */
+  }
+
+  .about-carousel-slide .about-slide-text {
+    font-size: 14px; /* Adjust the font size for smaller screens */
+  }
+
   .carousel {
     width: 100%; /* Adjust the width to fill the entire viewport */
     max-width: 100%; /* Set a maximum width to prevent excessive scaling */
