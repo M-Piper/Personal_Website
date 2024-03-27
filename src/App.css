@@ -238,13 +238,6 @@
   line-height: 1.5;
 }
 
-.cv-bg a {
-  text-decoration: underline;
-  color: #0000f1;
-  font-size: 1.5rem;
-  text-align: left;
-}
-
 .cv-bg {
   position: relative;
   background-image: url('./images/cv.jpg');
@@ -365,6 +358,16 @@ and (orientation: portrait),
     max-width: 100%;
     height: auto;
   }
+
+  .carousel {
+    width: 100%; /* Adjust the width to fill the entire viewport */
+    max-width: 100%; /* Set a maximum width to prevent excessive scaling */
+    max-height: 100%; /* Set a maximum height to prevent excessive scaling */
+  }
+
+  .carousel-slide .slide-text {
+    font-size: 14px; /* Adjust the font size for smaller screens */
+  }
 }
 
 /* Media query for larger devices */
@@ -374,4 +377,5 @@ and (orientation: portrait),
     max-width: 100%;
     height: auto;
   }
+
 }
