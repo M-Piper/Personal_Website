@@ -41,15 +41,14 @@
   }
 
 .main-image {
-  width:40vw;
-  max-width: 100%; /* Ensure the image doesn't exceed its original size */
+  max-width: 60%; /* Ensure the image doesn't exceed its original size */
   height: auto; /* Maintain the aspect ratio */
 }
 
 /*SIDEBAR RELATED CSS*/
 .sidebar {
   width: 100%; /* Adjust the width to span the entire width of the viewport */
-  min-width: 100px; /* Set a minimum width for smaller screens */
+  min-width: 375px; /* Set a minimum width for smaller screens */
   height: auto; /* Adjust height dynamically based on content */
   background-color: #f0f0f0; /* Example background color */
   position: fixed; /* Fixed position to keep it visible while scrolling */
@@ -71,6 +70,7 @@
   transform: scale(1.1); /* Increase size on hover */
   filter: brightness(150%); /* Increase brightness on hover */
 }
+
 
 /* App.css */
 .app-container {
@@ -98,23 +98,6 @@
   max-width: 100%;
   height: auto;
 }
-
-/* Media query for smaller devices */
-@media (min-width: 769px) {
-
-  .sidebar-home-button {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .sidebar-button {
-    max-width: 100%;
-    height: auto;
-  }
-}
-
-
-
 
 /*HOME PAGE BUTTON CSS*/
 .button-container {
@@ -153,40 +136,29 @@
   opacity: 1;
 }
 
-
-
-
 /*ABOUT PAGE CSS */
-
 .about-bg {
-  display: flex; /* Add flex display */
+  display: flex;
   justify-content: center;
-  align-items: flex-start; /* Align items to the start */
+  align-items: center;
   background-image: url('./images/about.jpg');
-  background-size: cover;
+  background-size: cover; /* or background-size: contain; */
   background-position: center;
-  height: 100vh; /* Set full viewport height */
+  background-repeat: no-repeat;
+  height: 100vh; /* Adjust height as needed */
   width: 100vw;
+  overflow: visible; /* Adjust overflow property */
 }
-
 .content-container {
-   max-width: 55vw;
-   padding: 20px; /* Adjust padding as needed */
-   margin-top: 30vh; /* Adjust the margin to move the container lower on the screen */
-   background-color: rgba(252, 234, 234, 0.9);
-   border-radius: 25px;
-   font-size: 1.25rem; /* Set the font size to a larger value */
+  width: 90%;
+  max-width: 800px;
+  padding: 20px;
+  margin-top: 60vh;
+  background-color: rgba(252, 234, 234, 0.9);
+  border-radius: 25px;
+  font-size: 1.25rem;
   line-height: 2.25rem;
- }
-
-
-@media (max-width: 768px) {
-  .about-container {
-    flex-direction: column; /* Stack elements vertically on small screens */
-    align-items: stretch; /* Stretch items to fill the container width */
-  }
 }
-
 
 /*CV PAGE CSS*/
 .cv-bg h3 {
@@ -224,34 +196,19 @@
 .cv-container {
   display: flex;
   justify-content: space-between;
-  border-radius:25px;
+  border-radius: 25px;
   background-color: rgba(252, 234, 234, 0.8);
+  width: 90%; /* Adjusted width for smaller screens */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 2%; /* Add padding to the container */
 }
 
 .left-column,
 .right-column {
-  flex-basis: calc(50% - 1rem); /* Adjust the column width as needed */
+  flex-basis: 100%; /* Full width for smaller screens */
   padding: 0 1rem; /* Add padding to each column */
+  text-align: center; /* Center text horizontally */
 }
-
-@media (max-width: 768px) { /* Adjust breakpoint as needed */
-  .cv-container {
-    align-items: center; /* Center items horizontally for smaller screens */
-  }
-
-  .button-container {
-    position: relative; /* Change to relative position for stacking */
-    top: 0; /* Reset top position */
-    margin-bottom: 0; /* Remove margin for smaller screens */
-  }
-
-  .button-container.small-button {
-    position: relative; /* Change to relative position for stacking */
-    top: 0; /* Reset top position */
-    margin-bottom: 0; /* Remove margin for smaller screens */
-  }
-}
-
 
 /*PROJECTS PAGE CSS*/
 .projects-bg p{
@@ -277,24 +234,6 @@
   align-items: center;
 }
 
-
-@media (max-width: 768px) { /* Adjust breakpoint as needed */
-  .button-container {
-    position: relative; /* Change to relative position for stacking */
-    top: 0; /* Reset top position */
-    margin-bottom: 0; /* Remove margin for smaller screens */
-  }
-
-  .button-container.small-button {
-    position: relative; /* Change to relative position for stacking */
-    top: 0; /* Reset top position */
-    margin-bottom: 0; /* Remove margin for smaller screens */
-  }
-}
-
-
-
-
 /*CONTACT PAGE CSS*/
 .contact-bg {
   width: 100vw; /* Ensure the element fills the viewport width */
@@ -309,7 +248,6 @@
 
 .contact-container {
   width: 50vw; /* Adjust the width for mobile devices */
-
   justify-content: center; /* Center content horizontally */
   align-items: center; /* Center content vertically */
   margin: 0 auto; /* Center the container horizontally */
@@ -322,11 +260,6 @@
   font-size: 1.5rem;
 }
 
-@media (max-width: 768px) {
-  .sidebar {
-    width: 30vw; /* Adjust the width relative to the viewport width */
-  }
-
   .main-image {
     width: 100%; /* Adjust the width to fill the container on smaller screens */
   }
@@ -335,5 +268,52 @@
     width: 90%; /* Adjust the width for smaller screens */
     padding: 5%; /* Adjust padding for smaller screens */
     text-align: center; /* Center text on smaller screens */
+  }
+
+
+/* Media query for iPhone devices and smaller screens */
+@media only screen
+and (max-width: 812px) /* iPhone X, XS, 11 Pro */
+and (-webkit-device-pixel-ratio: 2) /* iPhone 4, 4S, 5, 5S, 5C, SE */
+and (orientation: portrait),
+(max-width: 768px) {
+  .sidebar {
+    width: 100%; /* Adjust the width to span the entire width of the viewport for iPhones */
+  }
+
+  .button {
+    max-width: 150px; /* Adjust the maximum width for smaller screens */
+    height: auto; /* Automatically adjust height to maintain aspect ratio */
+  }
+
+  /* Adjust breakpoint as needed */
+  .button-container {
+    position: relative; /* Change to relative position for stacking */
+    top: 0; /* Reset top position */
+    margin-bottom: 0; /* Remove margin for smaller screens */
+  }
+
+  .cv-container {
+    align-items: center; /* Center items horizontally for smaller screens */
+  }
+
+  .about-container {
+    flex-direction: column; /* Stack elements vertically on small screens */
+    align-items: stretch; /* Stretch items to fill the container width */
+  }
+
+  .sidebar-home-button,
+  .sidebar-button {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Media query for larger devices */
+@media (min-width: 769px) {
+  .sidebar-home-button,
+  .sidebar-button {
+    max-width: 100%;
+    height: auto;
   }
 }
