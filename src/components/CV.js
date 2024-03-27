@@ -59,7 +59,6 @@ const CV = () => {
             <Carousel showArrows={true} showStatus={false} showThumbs={true} renderThumbs={renderThumbs} className="carousel">
                 <div className="carousel-slide">
                     <img src={education} alt="Education" className="carousel-image"/>
-
                     <div className="carousel-content">
                         <p className="slide-text">
                             <u>Education:</u><br />
