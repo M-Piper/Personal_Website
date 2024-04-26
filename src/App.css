@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 /*HOMEPAGE AND GLOBAL CSS*/
 *, *::before, *::after {
@@ -381,6 +384,48 @@
     text-align: center; /* Center text on smaller screens */
   }
 
+
+
+.worriedMonsters h1 {
+  font-family: 'Lobster', cursive;
+  font-size: 6vw; /* Adjusted font size for responsiveness */
+  margin-bottom: 5px;
+}
+
+.worriedMonsters h2 {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 6vw;
+  margin-top: 0;
+}
+.worriedMonsters-link {
+  display: flex;
+  justify-content: flex-start; /* Align content to the left */
+  margin-left: 10vw; /* Add space towards the left */
+}
+
+.worriedMonsters {
+  display: flex;
+  align-items: center; /* Align items vertically */
+}
+
+.text-container {
+  margin-right: 20px; /* Add space between text and image */
+}
+
+.worried-monsters-image {
+  max-width: 25vw;
+  height: auto;
+}
+
+/* Add the following CSS to make the link cover the content */
+.worriedMonsters-link {
+  text-decoration: none;
+  color: inherit; /* Inherit text color */
+}
+
+.worriedMonsters-link:hover .worriedMonsters {
+  filter: brightness(0.8); /* Dim the content on hover */
+}
 
 /* Media query for iPhone devices and smaller screens */
 @media only screen
