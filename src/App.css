@@ -473,6 +473,7 @@ and (orientation: portrait),
 
   .about-carousel-slide .about-slide-text {
     font-size: 14px; /* Adjust the font size for smaller screens */
+    margin-bottom: 14px;
   }
 
   .carousel {
