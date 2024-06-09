@@ -153,7 +153,27 @@
   overflow: visible; /* Adjust overflow property */
 }
 
+.about-container {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  margin: 60px auto; /* Center container horizontally and add space from top (adjust as needed) */
+  padding: 20px; /* Add padding inside the container */
+  border-radius: 25px; /* Add rounded corners */
+  background-color: rgba(252, 234, 234, 0.9); /* Transparent off-white background */
+  width: 90%; /* Adjust width as needed */
+  max-width: 800px; /* Set a maximum width */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
 
+.about-text {
+  font-size: 14px; /* Set font size */
+  line-height: 1.5; /* Improve readability */
+  margin-bottom: 16px; /* Add margin to the bottom for paragraph separation */
+  color: navy; /* Optional: Set text color */
+  text-align: center; /* Optional: Center text */
+}
 /* About page carousel content */
 
 .about-carousel .control-arrow {
@@ -388,13 +408,13 @@
 
 .worriedMonsters h1 {
   font-family: 'Lobster', cursive;
-  font-size: 6vw; /* Adjusted font size for responsiveness */
+  font-size: 4vw; /* Adjusted font size for responsiveness */
   margin-bottom: 5px;
 }
 
 .worriedMonsters h2 {
   font-family: 'Varela Round', sans-serif;
-  font-size: 6vw;
+  font-size: 4vw;
   margin-top: 0;
 }
 .worriedMonsters-link {
@@ -405,7 +425,19 @@
 
 .worriedMonsters {
   display: flex;
-  align-items: center; /* Align items vertically */
+}
+
+.canfly {
+  display: flex;
+}
+
+.canfly h3 {
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+.canfly-image {
+  max-width: 18vw;
 }
 
 .text-container {
@@ -413,7 +445,7 @@
 }
 
 .worried-monsters-image {
-  max-width: 25vw;
+  max-width: 18vw;
   height: auto;
 }
 
@@ -468,12 +500,11 @@ and (orientation: portrait),
   .about-carousel {
     width: 100%; /* Adjust the width to fill the entire viewport */
     max-width: 100%; /* Set a maximum width to prevent excessive scaling */
-    max-height: 100%; /* Set a maximum height to prevent excessive scaling */
+
   }
 
   .about-carousel-slide .about-slide-text {
     font-size: 14px; /* Adjust the font size for smaller screens */
-    margin-bottom: 14px;
   }
 
   .carousel {
@@ -484,6 +515,16 @@ and (orientation: portrait),
 
   .carousel-slide .slide-text {
     font-size: 14px; /* Adjust the font size for smaller screens */
+  }
+
+  .about-container {
+    margin: 20px auto; /* Adjust margin for smaller screens */
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+
+  .about-text {
+    font-size: 12px; /* Adjust font size for smaller screens */
+    margin-bottom: 12px; /* Adjust bottom margin for smaller screens */
   }
 }
 
