@@ -9,7 +9,7 @@ import contactHoverImage from '../buttons/contact.png';
 import homeHoverImage from '../buttons/home.png';
 import Sidebar from './Sidebar';
 import monster from '../images/WynneTheUncertain.png';
-import canfly from '../images/'canfly.png';
+import canfly from '../images/'CanFly.png';
 
 const Projects = () => {
     return (
