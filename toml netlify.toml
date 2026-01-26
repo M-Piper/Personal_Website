@@ -1,0 +1,10 @@
+[build]
+  command = "npm ci && npm run build"
+  publish = "build"
+  functions = "netlify/functions"
+
+# React Router (SPA) support:
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
