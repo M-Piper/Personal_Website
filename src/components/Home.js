@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Sidebar from './Sidebar.js';
 import mainImage from '../buttons/main.png';
 import mainHover from '../buttons/mainHover.png';
 import main1Image from '../buttons/main1.png';
@@ -44,7 +43,6 @@ const Home = () => {
     const handleMouseLeave = () => {
         setHoverImage(mainImage);
     };
-
 
     return (
         <div className="home-bg">
